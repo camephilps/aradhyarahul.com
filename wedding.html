@@ -1,0 +1,3591 @@
+<!DOCTYPE html>
+<html lang="hi" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aradhya
+         & Rahul - Cinematic Wedding Celebration</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="wedding-animate.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        magenta: {
+                            DEFAULT: '#E0115F',
+                            bright: '#FF2A75',
+                            dark: '#900B3E',
+                            light: '#FFB8D2',
+                            soft: '#FFF0F5'
+                        },
+                        burgundy: {
+                            DEFAULT: '#3D0911',
+                            dark: '#140205',
+                            mid: '#28050B',
+                            light: '#5B111D'
+                        },
+                        gold: {
+                            DEFAULT: '#E5C158',
+                            light: '#FFF2C6',
+                            dark: '#B08826'
+                        },
+                        cream: '#FFFDF9'
+                    },
+                    fontFamily: {
+                        cinzel: ['Cinzel', 'serif'],
+                        cinzelDeco: ['Cinzel Decorative', 'serif'],
+                        serifTitle: ['Cormorant Garamond', 'serif'],
+                        script: ['Great Vibes', 'cursive'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background:
+                radial-gradient(ellipse at 18% 12%, rgba(120, 45, 80, 0.2), transparent 42%),
+                radial-gradient(ellipse at 82% 36%, rgba(151, 111, 63, 0.1), transparent 38%),
+                radial-gradient(ellipse at 50% 88%, rgba(75, 35, 83, 0.17), transparent 46%),
+                linear-gradient(145deg, #100914 0%, #170b17 48%, #0c0911 100%);
+            background-attachment: fixed;
+            color: #fce7f3;
+            overflow-x: hidden;
+        }
+
+
+        .gold-shimmer-text {
+            background: linear-gradient(
+                110deg,
+                #9F7928 0%,
+                #F7E7AD 25%,
+                #D4AF37 45%,
+                #FFFFFF 50%,
+                #D4AF37 55%,
+                #F7E7AD 75%,
+                #8C6316 100%
+            );
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: goldShimmer 5s linear infinite;
+        }
+
+        .magenta-shimmer-text {
+            background: linear-gradient(
+                110deg,
+                #900B3E 0%,
+                #E0115F 25%,
+                #FF2A75 45%,
+                #FFFFFF 50%,
+                #FF2A75 55%,
+                #E0115F 75%,
+                #900B3E 100%
+            );
+            background-size: 220% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: goldShimmer 4s linear infinite;
+        }
+
+        .intro-name-live-glow {
+            animation: goldShimmer 4s linear infinite, introNameGlow 2.8s ease-in-out infinite alternate;
+        }
+
+        @keyframes introNameGlow {
+            0% {
+                filter: drop-shadow(0 0 8px rgba(224, 17, 95, 0.55))
+                        drop-shadow(0 0 22px rgba(144, 11, 62, 0.35));
+            }
+            100% {
+                filter: drop-shadow(0 0 12px rgba(255, 42, 117, 0.9))
+                        drop-shadow(0 0 32px rgba(212, 175, 55, 0.65));
+            }
+        }
+
+        @keyframes goldShimmer {
+            0% { background-position: 200% center; }
+            100% { background-position: -200% center; }
+        }
+
+        .video-viewport-zoom {
+            animation: cameraLensZoom 22s infinite alternate ease-in-out;
+        }
+
+        @keyframes cameraLensZoom {
+            0% { transform: scale(1.0); }
+            100% { transform: scale(1.12); }
+        }
+
+        .light-leak-overlay {
+            background: radial-gradient(circle at 80% 15%, rgba(255, 42, 117, 0.22) 0%, rgba(212, 175, 55, 0.12) 40%, transparent 75%),
+                        radial-gradient(circle at 15% 85%, rgba(224, 17, 95, 0.15) 0%, rgba(18, 2, 7, 0.5) 50%, transparent 80%);
+            animation: pulseLensLeak 8s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes pulseLensLeak {
+            0% { opacity: 0.6; filter: hue-rotate(0deg); }
+            50% { opacity: 0.95; filter: hue-rotate(15deg); }
+            100% { opacity: 0.7; filter: hue-rotate(-15deg); }
+        }
+
+        .cinematic-bar-top, .cinematic-bar-bottom {
+            height: 48px;
+            background: rgba(18, 2, 7, 0.88);
+        }
+
+        .vignette-overlay {
+            background: radial-gradient(ellipse at center, transparent 35%, rgba(10, 1, 4, 0.9) 100%);
+        }
+
+        .reveal-delay-1 { animation: fadeInScale 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.3s; opacity: 0; }
+        .reveal-delay-2 { animation: fadeInScale 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.8s; opacity: 0; }
+        .reveal-delay-3 { animation: fadeInScale 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards 1.3s; opacity: 0; }
+        .reveal-delay-4 { animation: fadeInScale 2.0s cubic-bezier(0.16, 1, 0.3, 1) forwards 1.8s; opacity: 0; }
+
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: translateY(18px) scale(0.96); } 
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .glow-ring {
+            box-shadow: 0 0 30px rgba(224, 17, 95, 0.25), inset 0 0 20px rgba(212, 175, 55, 0.15);
+        }
+
+
+        .hero-banner {
+            position: relative;
+            background-image: linear-gradient(to bottom, rgba(12, 5, 11, 0.12), rgba(12, 5, 11, 0.45)), url('Photos.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .back-to-top {
+            opacity: 0;
+            pointer-events: none;
+            visibility: hidden;
+            transform: translateY(14px) scale(0.9);
+            transition: opacity 300ms ease, transform 300ms ease, visibility 300ms ease;
+        }
+
+        .back-to-top.is-visible {
+            opacity: 1;
+            pointer-events: auto;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .back-to-top.is-visible:hover {
+            transform: translateY(-4px) scale(1.05);
+        }
+
+        .parents-love-link {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding-bottom: 0.3rem;
+        }
+
+        .parents-love-link::before {
+            position: absolute;
+            top: -1.1rem;
+            left: 50%;
+            content: "💖";
+            opacity: 0;
+            pointer-events: none;
+            transform: translate(-50%, 5px) scale(0.7);
+            transition: opacity 180ms ease, transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .parents-love-link:hover::before,
+        .parents-love-link:focus-visible::before {
+            opacity: 1;
+            transform: translate(-50%, 0) scale(1);
+        }
+
+        .parents-love-link::after {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            height: 1px;
+            content: "";
+            background: linear-gradient(90deg, transparent, #ff69b4, #e5c158, #ff69b4, transparent);
+            background-size: 200% 100%;
+            animation: parentsLoveShimmer 2.8s linear infinite;
+        }
+
+        .parents-love-heart {
+            color: #ff69b4;
+            filter: drop-shadow(0 0 5px rgba(255, 42, 117, 0.8));
+            animation: parentsLoveBeat 1.4s ease-in-out infinite;
+        }
+
+        @keyframes parentsLoveShimmer {
+            from { background-position: 100% 0; }
+            to { background-position: -100% 0; }
+        }
+
+        @keyframes parentsLoveBeat {
+            0%, 100% { transform: scale(1); }
+            14% { transform: scale(1.28); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.16); }
+            70% { transform: scale(1); }
+        }
+
+        .pink-neon-text {
+            color: #ffffff;
+            text-shadow: 
+                0 0 5px #ff1493,
+                0 0 10px #ff1493,
+                0 0 20px #ff1493,
+                0 0 40px #ff69b4,
+                0 0 80px #ff69b4,
+                0 0 120px #ff69b4;
+            animation: neonPulse 2.5s infinite alternate ease-in-out;
+        }
+
+        @keyframes neonPulse {
+            0% {
+                text-shadow: 
+                    0 0 5px #ff1493,
+                    0 0 10px #ff1493,
+                    0 0 20px #ff1493,
+                    0 0 40px #ff69b4,
+                    0 0 80px #ff69b4;
+            }
+            100% {
+                text-shadow: 
+                    0 0 8px #ff1493,
+                    0 0 15px #ff1493,
+                    0 0 30px #ff1493,
+                    0 0 60px #ff69b4,
+                    0 0 110px #ff69b4,
+                    0 0 140px #ff69b4;
+            }
+        }
+
+        .glass-card {
+            background: rgba(22, 9, 18, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 105, 180, 0.25);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+        }
+        
+        .glass-card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .glass-card-hover:hover {
+            transform: translateY(-8px) scale(1.01);
+            border-color: rgba(255, 105, 180, 0.65);
+            box-shadow: 0 14px 45px rgba(255, 20, 147, 0.35);
+        }
+
+        #dresscode .haldi-mehndi-card {
+            background: rgba(22, 9, 18, 0.75);
+            border-color: rgba(255, 105, 180, 0.25);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+        }
+
+        .scroll-animated {
+            opacity: 0;
+            transform: translateY(22px) scale(0.99);
+            transition: opacity 550ms ease, transform 650ms cubic-bezier(0.2, 0.7, 0.2, 1);
+            transition-delay: var(--reveal-delay, 0ms);
+        }
+
+        .scroll-animated.is-in-view {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .scroll-animated.animated {
+            animation-duration: 650ms;
+            animation-delay: var(--reveal-delay, 0ms) !important;
+            animation-timing-function: ease-out;
+        }
+
+        #yourExistingWebsite button,
+        #wishes button {
+            transition: transform 220ms ease, filter 220ms ease, box-shadow 220ms ease;
+        }
+
+        #yourExistingWebsite button:hover,
+        #wishes button:hover {
+            filter: brightness(1.08);
+        }
+
+        #yourExistingWebsite button:active,
+        #wishes button:active {
+            transform: scale(0.97);
+        }
+
+        #yourExistingWebsite button:focus-visible,
+        #yourExistingWebsite a:focus-visible,
+        #wishes button:focus-visible {
+            outline: 2px solid rgba(255, 226, 192, 0.9);
+            outline-offset: 4px;
+        }
+
+        #yourExistingWebsite .glass-card,
+        #wishes .glass-card {
+            transition: transform 350ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                        border-color 350ms ease,
+                        box-shadow 350ms ease;
+        }
+
+        #yourExistingWebsite .glass-card:not(.glass-card-hover):hover,
+        #wishes .glass-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 205, 225, 0.42);
+            box-shadow: 0 14px 38px rgba(8, 2, 10, 0.38), 0 0 20px rgba(224, 17, 95, 0.12);
+        }
+
+        .glass-card > i {
+            display: inline-block;
+            transition: transform 300ms ease, filter 300ms ease;
+        }
+
+        .glass-card:hover > i {
+            transform: translateY(-3px) rotate(-5deg);
+            filter: drop-shadow(0 0 8px rgba(255, 190, 220, 0.55));
+        }
+
+        .hero-banner::before {
+            position: absolute;
+            z-index: 0;
+            inset: 0;
+            content: "";
+            pointer-events: none;
+            background: radial-gradient(ellipse at 50% 42%, rgba(255, 219, 180, 0.12), transparent 55%);
+            animation: heroMemoryGlow 9s ease-in-out infinite alternate;
+        }
+
+        .hero-banner > div {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-banner h1 > span[aria-label="heart"] {
+            display: inline-block;
+            animation: heroHeartBeat 2.4s ease-in-out infinite;
+            filter: drop-shadow(0 0 12px rgba(255, 105, 180, 0.5));
+        }
+
+        .memory-ribbon {
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            padding: 1rem 0;
+            border-top: 1px solid rgba(229, 193, 88, 0.18);
+            border-bottom: 1px solid rgba(229, 193, 88, 0.18);
+            background: linear-gradient(90deg, rgba(28, 12, 25, 0.96), rgba(54, 22, 38, 0.82), rgba(28, 12, 25, 0.96));
+            box-shadow: 0 0 28px rgba(229, 193, 88, 0.06);
+        }
+
+        .memory-ribbon-track {
+            display: flex;
+            width: max-content;
+            animation: memoryRibbonTravel 38s linear infinite;
+            will-change: transform;
+        }
+
+        .memory-ribbon-track > span {
+            flex: 0 0 auto;
+            padding: 0 1.5rem;
+            color: #f7dba4;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            font-style: italic;
+            letter-spacing: 0.08em;
+            white-space: nowrap;
+            text-shadow: 0 0 14px rgba(229, 193, 88, 0.22);
+        }
+
+        .wedding-gift-decor {
+            position: fixed;
+            inset: 0;
+            z-index: 8;
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 450ms ease, visibility 450ms ease;
+        }
+
+        .wedding-gift-decor.is-visible {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .wedding-gift {
+            position: absolute;
+            top: 50%;
+            display: flex;
+            width: 144px;
+            min-height: 184px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            border: 1px solid rgba(229, 193, 88, 0.3);
+            border-radius: 30px;
+            background: linear-gradient(155deg, rgba(42, 18, 35, 0.82), rgba(17, 10, 20, 0.74));
+            box-shadow: inset 0 0 28px rgba(229, 193, 88, 0.05), 0 14px 40px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transform: translateY(-50%);
+            backdrop-filter: blur(7px);
+            -webkit-backdrop-filter: blur(7px);
+        }
+
+        .wedding-gift-left {
+            left: clamp(12px, 2vw, 26px);
+        }
+
+        .wedding-gift-right {
+            right: clamp(12px, 2vw, 26px);
+        }
+
+        .wedding-gift-icon {
+            display: inline-block;
+            font-size: 4.1rem;
+            line-height: 1;
+            filter: drop-shadow(0 5px 12px rgba(229, 193, 88, 0.22));
+            animation: weddingGiftFloat 3.6s ease-in-out infinite;
+        }
+
+        .wedding-gift-right .wedding-gift-icon {
+            animation-delay: 800ms;
+        }
+
+        .wedding-gift-label {
+            margin-top: 0.8rem;
+            color: #e5c158;
+            font-size: 0.58rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .wedding-gift-note {
+            margin-top: 0.45rem;
+            color: rgba(255, 240, 230, 0.8);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95rem;
+            font-style: italic;
+            line-height: 1.25;
+        }
+
+        .wedding-photo-finale {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            padding: clamp(3.5rem, 8vw, 7rem) clamp(1rem, 4vw, 3rem);
+            background:
+                radial-gradient(ellipse at 18% 24%, rgba(120, 45, 80, 0.28), transparent 42%),
+                radial-gradient(ellipse at 84% 78%, rgba(151, 111, 63, 0.2), transparent 40%),
+                linear-gradient(145deg, rgba(16, 9, 20, 0.96), rgba(30, 11, 25, 0.94), rgba(12, 9, 17, 0.98));
+        }
+
+        .wedding-photo-finale::before,
+        .wedding-photo-finale::after {
+            position: absolute;
+            inset: 0;
+            content: "";
+            pointer-events: none;
+        }
+
+        .wedding-photo-finale::before {
+            z-index: -1;
+            border-top: 1px solid rgba(229, 193, 88, 0.24);
+        }
+
+        .wedding-photo-finale::after {
+            z-index: 0;
+            opacity: 0.42;
+            background-image:
+                radial-gradient(circle, rgba(255, 232, 179, 0.8) 0 1px, transparent 2px),
+                radial-gradient(circle, rgba(243, 165, 204, 0.68) 0 1px, transparent 2px),
+                radial-gradient(circle, rgba(229, 193, 88, 0.55) 0 1.5px, transparent 2.5px);
+            background-size: 137px 151px, 191px 173px, 223px 197px;
+            background-position: 0 0, 62px 35px, 120px 82px;
+            animation: weddingFinaleSparkles 24s linear infinite;
+        }
+
+        .wedding-photo-finale-inner {
+            position: relative;
+            z-index: 1;
+            width: min(100%, 1180px);
+            margin: 0 auto;
+        }
+
+        .wedding-photo-heading {
+            margin-bottom: clamp(1.5rem, 4vw, 3rem);
+            text-align: center;
+        }
+
+        .wedding-photo-heading h2 {
+            background: linear-gradient(105deg, #f7dba4 0%, #fff8e9 38%, #e5c158 52%, #f7dba4 72%);
+            background-size: 220% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            line-height: 1.1;
+            text-shadow: 0 0 26px rgba(229, 193, 88, 0.2);
+            animation: weddingFinaleTitleShimmer 8s linear infinite;
+        }
+
+        .wedding-photo-heading p {
+            margin-top: 0.5rem;
+            color: rgba(255, 240, 230, 0.76);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1rem, 2.4vw, 1.35rem);
+            letter-spacing: 0.08em;
+        }
+
+                .wedding-forever-live {
+                    position: relative;
+                    display: grid;
+                    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+                    align-items: center;
+                    gap: clamp(1.5rem, 4vw, 3rem);
+                    width: min(100%, 980px);
+                    margin: 0 auto 2rem;
+                    padding: clamp(1rem, 2vw, 1.5rem);
+                    border: 1px solid rgba(229, 193, 88, 0.22);
+                    border-radius: 2rem;
+                    background: linear-gradient(135deg, rgba(72, 17, 33, 0.54), rgba(18, 9, 19, 0.3));
+                    box-shadow: inset 0 0 30px rgba(255, 214, 126, 0.05), 0 18px 45px rgba(0, 0, 0, 0.18);
+                }
+
+                .wedding-forever-orbit {
+                    position: relative;
+                    display: grid;
+                    place-items: center;
+                    min-height: clamp(240px, 28vw, 340px);
+                    border-radius: 50%;
+                    background: radial-gradient(circle at center, rgba(255, 224, 178, 0.18), rgba(255, 224, 178, 0.02) 52%, transparent 62%);
+                    overflow: hidden;
+                }
+
+                .wedding-forever-orbit::before,
+                .wedding-forever-orbit::after {
+                    content: "";
+                    position: absolute;
+                    inset: 8% 12%;
+                    border-radius: 50%;
+                    border: 1px solid rgba(251, 202, 92, 0.35);
+                    box-shadow: 0 0 18px rgba(251, 202, 92, 0.12), inset 0 0 18px rgba(255, 255, 255, 0.05);
+                }
+
+                .wedding-forever-orbit::after {
+                    inset: 18% 22%;
+                    border-color: rgba(255, 164, 198, 0.3);
+                    animation: foreverOrbit 12s linear infinite;
+                }
+
+                .wedding-forever-core {
+                    position: relative;
+                    z-index: 1;
+                    display: grid;
+                    place-items: center;
+                    width: clamp(110px, 14vw, 160px);
+                    aspect-ratio: 1;
+                    border-radius: 50%;
+                    background: radial-gradient(circle at 30% 30%, rgba(255, 249, 234, 0.95), rgba(255, 213, 147, 0.7) 20%, rgba(211, 66, 108, 0.9) 65%, rgba(78, 24, 39, 0.95) 100%);
+                    box-shadow: 0 0 26px rgba(255, 217, 109, 0.22), 0 18px 36px rgba(20, 7, 10, 0.4);
+                    animation: foreverPulse 4s ease-in-out infinite;
+                }
+
+                .wedding-forever-core span {
+                    display: block;
+                    font-size: clamp(2.5rem, 4vw, 4rem);
+                    line-height: 1;
+                    filter: drop-shadow(0 6px 18px rgba(255, 220, 120, 0.4));
+                }
+
+                .wedding-forever-orbit .orbit-dot {
+                    position: absolute;
+                    width: 14px;
+                    height: 14px;
+                    border-radius: 50%;
+                    background: radial-gradient(circle, #fff7d1 0%, #ffd26d 30%, #db7b8e 100%);
+                    box-shadow: 0 0 24px rgba(255, 222, 143, 0.7);
+                    animation: foreverOrbitDot 8s ease-in-out infinite;
+                }
+
+                .wedding-forever-orbit .orbit-dot:nth-child(2) { animation-delay: 0.8s; }
+                .wedding-forever-orbit .orbit-dot:nth-child(3) { animation-delay: 1.6s; }
+                .wedding-forever-orbit .orbit-dot:nth-child(4) { animation-delay: 2.4s; }
+                .wedding-forever-orbit .orbit-dot:nth-child(5) { animation-delay: 3.2s; }
+
+                .wedding-forever-copy {
+                    position: relative;
+                    z-index: 1;
+                    text-align: left;
+                }
+
+                .wedding-forever-copy .eyebrow {
+                    margin: 0 0 0.65rem;
+                    font-size: 0.72rem;
+                    letter-spacing: 0.32em;
+                    text-transform: uppercase;
+                    color: rgba(255, 219, 126, 0.88);
+                }
+
+                .wedding-forever-copy h3 {
+                    margin: 0;
+                    font-family: 'Great Vibes', cursive;
+                    font-size: clamp(2.6rem, 5vw, 4rem);
+                    line-height: 1;
+                    color: #fff6dd;
+                    text-shadow: 0 0 18px rgba(255, 219, 126, 0.15);
+                }
+
+                .wedding-forever-copy p:last-child {
+                    margin-top: 0.9rem;
+                    color: rgba(252, 235, 214, 0.8);
+                    font-family: 'Cormorant Garamond', serif;
+                    font-size: clamp(1.05rem, 2vw, 1.4rem);
+                    line-height: 1.35;
+                    letter-spacing: 0.03em;
+                }
+
+                .wedding-photo-grid {
+                    display: grid;
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                    gap: clamp(0.8rem, 2vw, 1.5rem);
+                }
+
+                @keyframes foreverOrbit {
+                    0% { transform: rotate(0deg) scale(0.96); }
+                    50% { transform: rotate(180deg) scale(1.04); }
+                    100% { transform: rotate(360deg) scale(0.96); }
+                }
+
+                @keyframes foreverPulse {
+                    0%, 100% { transform: scale(0.96); box-shadow: 0 0 18px rgba(255, 217, 109, 0.18); }
+                    50% { transform: scale(1.06); box-shadow: 0 0 34px rgba(255, 217, 109, 0.38); }
+                }
+
+                @keyframes foreverOrbitDot {
+                    0% { transform: translate(-50%, -50%) scale(0.7) rotate(0deg); opacity: 0.5; }
+                    25% { transform: translate(-50%, -50%) scale(1) rotate(90deg); opacity: 1; }
+                    50% { transform: translate(-50%, -50%) scale(0.8) rotate(180deg); opacity: 0.8; }
+                    100% { transform: translate(-50%, -50%) scale(0.7) rotate(360deg); opacity: 0.5; }
+                }
+
+        .wedding-photo-card {
+            position: relative;
+            min-width: 0;
+            overflow: hidden;
+            border: 1px solid rgba(229, 193, 88, 0.26);
+            border-radius: clamp(1rem, 2vw, 1.75rem);
+            background: rgba(22, 10, 20, 0.84);
+            box-shadow: 0 18px 55px rgba(0, 0, 0, 0.3);
+        }
+
+        .wedding-photo-card.is-in-view {
+            animation: weddingPhotoGlow 6s ease-in-out infinite alternate;
+        }
+
+        .wedding-photo-card img {
+            animation: weddingPhotoLive 7s ease-in-out infinite alternate;
+        }
+
+        .wedding-photo-card:nth-child(2) img { animation-delay: -1s; }
+        .wedding-photo-card:nth-child(3) img { animation-delay: -2s; }
+        .wedding-photo-card:nth-child(4) img { animation-delay: -3s; }
+        .wedding-photo-card:nth-child(5) img { animation-delay: -4s; }
+        .wedding-photo-card:nth-child(6) img { animation-delay: -5s; }
+
+        .wedding-photo-card-feature {
+            grid-column: 1 / -1;
+        }
+
+        .wedding-photo-card-ceremony {
+            display: grid;
+            grid-column: 1 / -1;
+            grid-template-columns: minmax(0, 0.72fr) minmax(0, 1fr);
+            align-items: center;
+            min-height: clamp(300px, 38vw, 460px);
+            padding: clamp(0.75rem, 2vw, 1.25rem);
+            background:
+                radial-gradient(ellipse at 18% 50%, rgba(229, 193, 88, 0.16), transparent 55%),
+                linear-gradient(120deg, rgba(48, 17, 34, 0.95), rgba(17, 10, 20, 0.96));
+        }
+
+        .wedding-photo-card-ceremony::before {
+            position: absolute;
+            z-index: 1;
+            inset: 0;
+            content: "";
+            background: linear-gradient(110deg, transparent 38%, rgba(255, 230, 170, 0.12) 50%, transparent 62%);
+            transform: translateX(-100%);
+            pointer-events: none;
+            animation: ceremonyPhotoSheen 8s ease-in-out infinite;
+        }
+
+        .wedding-photo-card.wedding-photo-card-ceremony img {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: clamp(270px, 34vw, 420px);
+            object-fit: contain;
+            border-radius: 12px;
+            filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.42));
+        }
+
+        .wedding-photo-card.wedding-photo-card-ceremony img {
+            animation-name: weddingCeremonyPhotoLive;
+        }
+
+        .wedding-photo-card.wedding-photo-card-ceremony figcaption {
+            position: relative;
+            z-index: 1;
+            inset: auto;
+            padding: clamp(1rem, 4vw, 3rem);
+            background: none;
+            font-size: clamp(1.35rem, 3vw, 2.2rem);
+            text-align: left;
+        }
+
+        @keyframes ceremonyPhotoSheen {
+            0%, 28% { transform: translateX(-100%); }
+            65%, 100% { transform: translateX(100%); }
+        }
+
+        @keyframes weddingPhotoLive {
+            from { filter: brightness(0.96) saturate(0.96); }
+            to { filter: brightness(1.06) saturate(1.08); }
+        }
+
+        @keyframes weddingCeremonyPhotoLive {
+            from { filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.42)) brightness(0.96); }
+            to { filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.42)) brightness(1.06); }
+        }
+
+        .wedding-photo-card img {
+            display: block;
+            width: 100%;
+            height: clamp(220px, 30vw, 390px);
+            object-fit: cover;
+            transition: transform 800ms cubic-bezier(0.2, 0.7, 0.2, 1), filter 800ms ease;
+        }
+
+        .wedding-photo-card-feature img {
+            height: clamp(260px, 48vw, 620px);
+            object-position: center 42%;
+        }
+
+        .wedding-photo-card:hover img {
+            transform: scale(1.035);
+            filter: brightness(1.06);
+        }
+
+        .wedding-photo-card:hover img {
+            animation-play-state: paused;
+        }
+
+        .wedding-photo-card figcaption {
+            position: absolute;
+            inset: auto 0 0;
+            padding: clamp(1rem, 3vw, 1.75rem);
+            background: linear-gradient(transparent, rgba(13, 6, 14, 0.88));
+            color: #fff0cf;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.1rem, 2.7vw, 1.7rem);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        @keyframes weddingFinaleSparkles {
+            from { background-position: 0 0, 62px 35px, 120px 82px; }
+            to { background-position: 0 -302px, 253px -138px, -103px -312px; }
+        }
+
+        @keyframes weddingFinaleTitleShimmer {
+            from { background-position: 100% center; }
+            to { background-position: -120% center; }
+        }
+
+        @keyframes weddingPhotoGlow {
+            from { box-shadow: 0 18px 55px rgba(0, 0, 0, 0.3); }
+            to { box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), 0 0 24px rgba(229, 193, 88, 0.13); }
+        }
+
+        #yourExistingWebsite section > div:first-child h2 {
+            background: linear-gradient(105deg, #f3a5cc 0%, #fff0d3 38%, #e5c158 50%, #f3a5cc 68%, #fff0d3 100%);
+            background-size: 220% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: memoryTitleShimmer 8s linear infinite;
+        }
+
+        #yourExistingWebsite section > div:first-child h2::after {
+            display: block;
+            width: clamp(2.5rem, 8vw, 5rem);
+            height: 1px;
+            margin: 0.45rem auto 0;
+            content: "";
+            background: linear-gradient(90deg, transparent, rgba(229, 193, 88, 0.9), transparent);
+            transform: scaleX(0.55);
+            transform-origin: center;
+            transition: transform 650ms cubic-bezier(0.2, 0.7, 0.2, 1);
+        }
+
+        #yourExistingWebsite section > div:first-child.is-in-view h2::after {
+            transform: scaleX(1);
+        }
+
+        #countdownTimer > div {
+            animation: countdownGlow 5s ease-in-out infinite alternate;
+        }
+
+        #countdownTimer > div:nth-child(2) { animation-delay: 700ms; }
+        #countdownTimer > div:nth-child(3) { animation-delay: 1400ms; }
+        #countdownTimer > div:nth-child(4) { animation-delay: 2100ms; }
+
+        .save-the-date-card {
+            position: relative;
+            width: min(100%, 440px);
+            margin: 0 auto 1.5rem;
+            overflow: hidden;
+            border: 1px solid rgba(255, 220, 150, 0.62);
+            border-radius: 16px;
+            background: rgba(26, 10, 18, 0.8);
+            box-shadow: 0 8px 26px rgba(0, 0, 0, 0.32), 0 0 20px rgba(245, 190, 105, 0.16);
+            animation: saveDateGlow 4.5s ease-in-out infinite alternate;
+        }
+
+        .save-the-date-card::after {
+            position: absolute;
+            inset: 0;
+            content: "";
+            background: linear-gradient(110deg, transparent 35%, rgba(255, 245, 220, 0.22) 50%, transparent 65%);
+            transform: translateX(-120%);
+            pointer-events: none;
+            animation: saveDateSheen 7s ease-in-out infinite;
+        }
+
+        .save-the-date-card img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 1536 / 690;
+            object-fit: cover;
+        }
+
+        @keyframes saveDateGlow {
+            from { box-shadow: 0 8px 26px rgba(0, 0, 0, 0.32), 0 0 14px rgba(245, 190, 105, 0.12); }
+            to { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.36), 0 0 24px rgba(245, 190, 105, 0.3); }
+        }
+
+        @keyframes saveDateSheen {
+            0%, 32% { transform: translateX(-120%); }
+            68%, 100% { transform: translateX(120%); }
+        }
+
+        #memoryLane article > span {
+            display: inline-block;
+            animation: memoryIconFloat 3.8s ease-in-out infinite;
+        }
+
+        #memoryLane article:nth-child(2) > span { animation-delay: 450ms; }
+        #memoryLane article:nth-child(3) > span { animation-delay: 900ms; }
+
+        #yourExistingWebsite nav a:not(.parents-love-link) {
+            transition: color 220ms ease, text-shadow 220ms ease;
+        }
+
+        #yourExistingWebsite nav a:not(.parents-love-link):hover {
+            text-shadow: 0 0 14px rgba(255, 190, 220, 0.55);
+        }
+
+        .wedding-forever-spark {
+            position: absolute;
+            z-index: 0;
+            color: rgba(255, 230, 154, 0.95);
+            font-size: clamp(0.7rem, 1.4vw, 1.1rem);
+            filter: drop-shadow(0 0 12px rgba(255, 210, 118, 0.4));
+            pointer-events: none;
+            user-select: none;
+            animation: foreverSparkFloat 7s ease-in-out infinite;
+        }
+
+        .wedding-developer-spotlight {
+            position: relative;
+            isolation: isolate;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            width: min(100%, 420px);
+            margin: 0 0 1.5rem;
+            padding: 1rem 1.15rem;
+            overflow: hidden;
+            border: 1px solid rgba(255, 217, 125, 0.3);
+            border-radius: 18px;
+            background:
+                radial-gradient(circle at 0% 50%, rgba(255, 215, 110, 0.14), transparent 42%),
+                linear-gradient(135deg, rgba(47, 17, 34, 0.9), rgba(15, 10, 19, 0.94));
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25), 0 0 24px rgba(255, 214, 126, 0.1);
+            text-align: left;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+
+        .wedding-live-footer {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+        }
+
+        .wedding-live-footer > :not(.wedding-footer-particles) {
+            position: relative;
+            z-index: 1;
+        }
+
+        .wedding-footer-particles {
+            position: absolute;
+            z-index: 0;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.32;
+            pointer-events: none;
+        }
+
+        .wedding-developer-spotlight::before {
+            position: absolute;
+            inset: 0 auto 0 0;
+            z-index: 1;
+            width: 4px;
+            content: "";
+            background: linear-gradient(180deg, #fff0bb, #ffd76e, #ff8ab4);
+            box-shadow: 0 0 16px rgba(255, 214, 126, 0.85);
+        }
+
+        .wedding-developer-mark {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            flex: 0 0 48px;
+            width: 48px;
+            height: 48px;
+            place-items: center;
+            border: 1px solid rgba(255, 226, 159, 0.55);
+            border-radius: 15px;
+            background: linear-gradient(145deg, rgba(255, 215, 110, 0.22), rgba(255, 138, 180, 0.12));
+            color: #ffe5a0;
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.9rem;
+            text-shadow: 0 0 14px rgba(255, 214, 126, 0.55);
+            box-shadow: inset 0 0 14px rgba(255, 214, 126, 0.08);
+        }
+
+        .wedding-developer-light {
+            display: none;
+        }
+
+        .wedding-developer-copy {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            min-width: 0;
+        }
+
+        .wedding-developer-label {
+            margin: 0;
+            font-size: 10px;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: rgba(255, 220, 146, 0.82);
+        }
+
+        .wedding-developer-name {
+            margin: 0.25rem 0 0;
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            color: #fff9ef;
+        }
+
+        .wedding-developer-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            margin-top: 0.35rem;
+            color: #ffdca1;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 180ms ease, text-shadow 180ms ease;
+        }
+
+        .wedding-developer-link::after {
+            content: "↗";
+            font-size: 1rem;
+            transition: transform 180ms ease;
+        }
+
+        .wedding-developer-link:hover,
+        .wedding-developer-link:focus-visible {
+            color: #fff3d4;
+            text-shadow: 0 0 12px rgba(255, 214, 126, 0.55);
+        }
+
+        .wedding-developer-link:hover::after,
+        .wedding-developer-link:focus-visible::after {
+            transform: translate(2px, -2px);
+        }
+
+        @media (max-width: 480px) {
+            .wedding-developer-spotlight {
+                gap: 0.75rem;
+                padding: 0.85rem;
+            }
+
+            .wedding-developer-mark {
+                flex-basis: 42px;
+                width: 42px;
+                height: 42px;
+            }
+        }
+
+        @keyframes foreverSparkFloat {
+            0% { opacity: 0; transform: translate3d(0, 20px, 0) scale(0.6) rotate(0deg); }
+            18% { opacity: 0.9; }
+            50% { transform: translate3d(10px, -18px, 0) scale(1.2) rotate(18deg); }
+            100% { opacity: 0; transform: translate3d(-8px, -44px, 0) scale(0.7) rotate(-14deg); }
+        }
+
+        @keyframes heroMemoryGlow {
+            from { opacity: 0.45; transform: scale(0.96); }
+            to { opacity: 1; transform: scale(1.04); }
+        }
+
+        @keyframes heroHeartBeat {
+            0%, 100% { transform: scale(1); }
+            12% { transform: scale(1.12); }
+            24% { transform: scale(1); }
+            36% { transform: scale(1.08); }
+        }
+
+        @keyframes countdownGlow {
+            from { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16); }
+            to { box-shadow: 0 8px 28px rgba(224, 17, 95, 0.16), 0 0 16px rgba(229, 193, 88, 0.08); }
+        }
+
+        @keyframes memoryIconFloat {
+            0%, 100% { transform: translateY(0) rotate(-3deg); }
+            50% { transform: translateY(-5px) rotate(3deg); }
+        }
+
+        @keyframes memoryRibbonTravel {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        @keyframes memoryTitleShimmer {
+            from { background-position: 100% center; }
+            to { background-position: -120% center; }
+        }
+
+        @keyframes weddingGiftFloat {
+            0%, 100% { transform: translateY(0) rotate(-3deg); }
+            50% { transform: translateY(-10px) rotate(3deg); }
+        }
+
+        #webgl-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: block;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        #memory-particles-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 5;
+            width: 100vw;
+            height: 100vh;
+            opacity: 0.2;
+            visibility: hidden;
+            pointer-events: none;
+            mix-blend-mode: screen;
+        }
+
+        #yourExistingWebsite {
+            position: relative;
+            isolation: isolate;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0c050b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #db2777;
+            border-radius: 4px;
+        }
+
+        .mobile-nav-links {
+            scrollbar-width: none;
+        }
+        .mobile-nav-links::-webkit-scrollbar {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                background-attachment: scroll;
+            }
+
+            .glass-card,
+            .wedding-gift,
+            .memory-ribbon {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+            }
+
+            #webgl-bg,
+            #memory-particles-bg {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-banner {
+                background-attachment: scroll;
+            }
+
+            section[id] {
+                scroll-margin-top: 8rem;
+            }
+
+            #videoCardContent {
+                width: 100%;
+                padding: 1rem 1.25rem;
+            }
+
+            #videoCardContent h1 {
+                font-size: clamp(2.5rem, 11vw, 3.75rem);
+                letter-spacing: 0.06em;
+            }
+
+            #introTagline {
+                max-width: 13rem;
+                letter-spacing: 0.18em;
+            }
+
+            .glow-ring {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.25rem 0.6rem;
+                padding: 0.5rem 1rem;
+                max-width: calc(100vw - 2rem);
+                box-sizing: border-box;
+            }
+
+            #weddingDateText,
+            #weddingCityText {
+                letter-spacing: 0.12em;
+            }
+
+            #weddingDateText {
+                white-space: nowrap;
+            }
+
+            #weddingCityText {
+                flex-basis: 100%;
+                max-width: 100%;
+                white-space: normal;
+                overflow-wrap: anywhere;
+                line-height: 1.5;
+            }
+
+            .glow-ring > span:nth-of-type(2) {
+                display: none;
+            }
+
+            #gallery img {
+                height: 14rem;
+            }
+
+            .wedding-photo-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .wedding-photo-card-feature {
+                grid-column: auto;
+            }
+
+            .wedding-photo-card-ceremony {
+                grid-column: auto;
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+                min-height: 0;
+                padding: 0.75rem;
+            }
+
+            .wedding-photo-card-ceremony img {
+                height: min(112vw, 480px);
+            }
+
+            .wedding-photo-card-ceremony figcaption {
+                padding: 0.75rem 0.5rem 1rem;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 1359px) {
+            .wedding-gift-decor {
+                display: none;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            .animated,
+            .hero-banner::before,
+            .hero-banner h1 > span[aria-label="heart"],
+            #countdownTimer > div,
+            #memoryLane article > span {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+            }
+
+            .scroll-animated,
+            #yourExistingWebsite button,
+            #wishes button,
+            #yourExistingWebsite .glass-card,
+            #wishes .glass-card,
+            .glass-card > i,
+            #yourExistingWebsite section > div:first-child h2::after {
+                transition-duration: 0.01ms !important;
+            }
+
+            .scroll-animated {
+                opacity: 1;
+                transform: none;
+            }
+
+            .memory-ribbon-track,
+            #yourExistingWebsite section > div:first-child h2,
+            .wedding-gift-icon,
+            .wedding-photo-finale::after,
+            .wedding-photo-heading h2,
+            .wedding-photo-card.is-in-view,
+            .wedding-photo-card img,
+            .wedding-photo-card-ceremony::before,
+            .save-the-date-card,
+            .save-the-date-card::after {
+                animation: none !important;
+            }
+
+            .wedding-photo-card img {
+                transition-duration: 0.01ms !important;
+            }
+
+            .memory-ribbon-track {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .memory-ribbon-track > span:nth-child(n + 2) {
+                display: none;
+            }
+
+            .parents-love-link::before,
+            .parents-love-link::after,
+            .parents-love-heart {
+                animation: none;
+            }
+
+            .back-to-top {
+                transition: none;
+            }
+
+            .wedding-photo-card img {
+                transition: none;
+            }
+        }
+
+        @media (max-height: 700px) and (max-width: 640px) {
+            .cinematic-bar-top,
+            .cinematic-bar-bottom {
+                height: 40px;
+            }
+
+            #videoCardContent h1 {
+                font-size: clamp(2.25rem, 10vw, 3rem);
+            }
+
+            #videoCardContent .reveal-delay-3 {
+                margin-top: 0.5rem;
+                margin-bottom: 1rem;
+            }
+        }
+
+    </style>
+    <script src="wedding-song-data.js"></script>
+    </head>
+<body class="bg-burgundy-dark text-cream select-none overflow-hidden">
+
+    <audio id="weddingMusic" preload="auto" aria-label="Wedding song"></audio>
+
+    <div id="videoIntroContainer" class="fixed inset-0 z-50 flex flex-col justify-between bg-burgundy-dark transition-opacity duration-1000">
+
+        <!-- Top Letterbox Bar -->
+        <div class="cinematic-bar-top relative z-30 w-full flex items-center justify-between px-6 border-b border-gold/10">
+            <div class="flex items-center gap-2 text-[10px] font-cinzel text-gold/70 tracking-widest uppercase">
+                <span class="w-2 h-2 rounded-full bg-magenta-bright animate-ping"></span>
+                <span>LIVE WEDDING FILM PREVIEW</span>
+            </div>
+            <div class="text-right leading-tight" aria-label="Current date and time in India">
+                <span id="topLiveDate" class="block text-[9px] font-cinzel text-cream/70"></span>
+                <time id="topLiveTime" class="block text-[10px] font-cinzel font-bold text-gold"></time>
+            </div>
+        </div>
+
+        <!-- LIVE CANVAS VIDEO SIMULATION ENGINE -->
+        <div class="absolute inset-0 z-10 overflow-hidden">
+            <div class="w-full h-full video-viewport-zoom">
+                <canvas id="liveVideoCanvas" class="w-full h-full block"></canvas>
+            </div>
+            <div class="light-leak-overlay absolute inset-0 pointer-events-none z-15"></div>
+            <div class="vignette-overlay absolute inset-0 pointer-events-none z-20"></div>
+        </div>
+
+        <!-- CENTER CONTENT: MOVIE TITLE STYLE REVEAL -->
+        <div id="videoCardContent" class="relative z-30 max-w-2xl mx-auto my-auto text-center px-6 py-8">
+            <div class="reveal-delay-1 inline-flex items-center justify-center mb-4">
+                <div class="h-[1px] w-12 bg-gradient-to-r from-transparent to-gold/70"></div>
+                <span id="introTagline" class="font-cinzel text-gold text-xs sm:text-sm tracking-[0.4em] uppercase mx-4 font-semibold drop-shadow">
+                    THE WEDDING CELEBRATION OF
+                </span>
+                <div class="h-[1px] w-12 bg-gradient-to-l from-transparent to-gold/70"></div>
+            </div>
+
+            <div class="reveal-delay-2 my-2">
+                <h1 class="font-cinzelDeco text-5xl sm:text-7xl md:text-8xl magenta-shimmer-text intro-name-live-glow tracking-wider leading-tight drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]">
+                    <span id="brideName">ARADHYA</span>
+                </h1>
+                <div class="font-script text-4xl sm:text-5xl gold-shimmer-text my-[-10px] sm:my-[-15px] drop-shadow-md">
+                    &amp;
+                </div>
+                <h1 class="font-cinzelDeco text-5xl sm:text-7xl md:text-8xl magenta-shimmer-text intro-name-live-glow tracking-wider leading-tight drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]">
+                    <span id="groomName">RAHUL</span>
+                </h1>
+            </div>
+
+            <div class="reveal-delay-3 max-w-md mx-auto mt-4 mb-8">
+                <p id="weddingQuote" class="font-sans text-cream/90 text-xs sm:text-sm font-light italic tracking-widest drop-shadow mb-4">
+                    "Two hearts, two souls, one extraordinary journey of love."
+                </p>
+
+                <div class="inline-flex items-center gap-4 border-y border-magenta/40 py-2 px-8 bg-burgundy-dark/80 backdrop-blur rounded-full glow-ring">
+                    <i class="fas fa-calendar-alt text-gold text-xs"></i>
+                    <span id="weddingDateText" class="font-cinzel text-gold tracking-[0.25em] text-xs sm:text-sm font-bold">NOVEMBER 24, 2026</span>
+                    <span class="text-gold/40">|</span>
+                    <span id="weddingCityText" class="font-cinzel text-cream/80 tracking-widest text-xs">NEW DELHI</span>
+                </div>
+            </div>
+
+            <div class="reveal-delay-4 flex flex-col items-center">
+                <button id="enterWebsiteBtn" onclick="enterMainWebsite()" class="group relative inline-flex items-center justify-center px-10 py-4 overflow-hidden font-cinzel text-xs sm:text-sm font-bold tracking-[0.2em] text-white bg-gradient-to-r from-magenta-dark via-magenta to-magenta-bright rounded-full shadow-[0_0_25px_rgba(224,17,95,0.5)] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_35px_rgba(224,17,95,0.8)]">
+                    <span class="relative z-10 flex items-center gap-3">
+                        <i class="fas fa-play text-xs"></i> ENTER INVITATION
+                    </span>
+                    <div class="absolute inset-0 bg-white/30 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                </button>
+                <span class="text-[10px] text-gold/60 mt-3 font-cinzel tracking-widest uppercase animate-pulse">
+                    Tap to launch full website
+                </span>
+            </div>
+        </div>
+
+        <!-- Bottom Letterbox Bar -->
+        <div class="cinematic-bar-bottom relative z-30 w-full flex items-center justify-between px-6 border-t border-gold/10 text-xs font-cinzel text-cream/50">
+            <span class="hidden sm:inline">PRODUCED FOR RAHUL &amp; ARADHYA</span>
+            <div class="flex items-center gap-4 mx-auto sm:mx-0">
+                <button onclick="restartVideoIntro()" class="hover:text-gold transition flex items-center gap-1.5 text-[11px] tracking-widest">
+                    <i class="fas fa-redo-alt text-magenta-bright"></i> REPLAY INTRO
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <canvas id="memory-particles-bg" aria-hidden="true"></canvas>
+
+    <aside id="weddingGiftDecor" class="wedding-gift-decor" aria-label="Wedding gifts and keepsakes">
+        <div class="wedding-gift wedding-gift-left">
+            <span class="wedding-gift-icon" aria-hidden="true">🎁</span>
+            <span class="wedding-gift-label"little surprise</span>
+            <p class="wedding-gift-note">Kholo toh andar dher saara pyaar! 💝</p>
+        </div>
+        <div class="wedding-gift wedding-gift-right">
+            <span class="wedding-gift-icon" aria-hidden="true">🧸</span>
+            <span class="wedding-gift-label">Forever keepsake</span>
+            <p class="wedding-gift-note">Shaadi ke baad bhi best friend! 😄</p>
+        </div>
+    </aside>
+
+    <main id="yourExistingWebsite" class="opacity-0 transition-opacity duration-1000">
+        
+        <!-- WebGL 3D Canvas Background -->
+        <canvas id="webgl-bg"></canvas>
+
+        <!-- Navigation Bar -->
+        <nav class="fixed top-0 left-0 w-full z-40 px-6 py-4 transition-all duration-300 glass-card border-b border-pink-500/20">
+            <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center">
+                <a href="#" class="text-2xl font-script text-pink-300 font-bold tracking-wider hover:text-pink-200 transition">A & R</a>
+                <div class="hidden lg:flex space-x-8 text-xs tracking-widest uppercase font-medium">
+                    <a href="#about" class="hover:text-pink-400 transition">Our Story</a>
+                    <a href="#memoryLane" class="hover:text-pink-400 transition">Memory Lane</a>
+                    <a href="#blessings" class="parents-love-link hover:text-pink-400 transition">Parent's Love <i class="fa-solid fa-heart parents-love-heart text-[9px]" aria-hidden="true"></i></a>
+                    <a href="#events" class="hover:text-pink-400 transition">Functions</a>
+                    <a href="#countdown" class="hover:text-pink-400 transition">Countdown</a>
+                    <a href="#dresscode" class="hover:text-pink-400 transition">Dress Code</a>
+                    <a href="#gallery" class="hover:text-pink-400 transition">Gallery</a>
+                    <a href="#wishes" class="hover:text-pink-400 transition">Wishes Wall</a>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button onclick="restartVideoIntro()" class="px-3 py-1.5 rounded-full border border-gold/40 bg-burgundy/60 text-gold text-xs tracking-wider flex items-center gap-1.5 hover:bg-gold hover:text-burgundy-dark transition">
+                        <i class="fas fa-film"></i>
+                        <span class="hidden sm:inline">Live Intro</span>
+                    </button>
+                </div>
+                <div class="mobile-nav-links flex w-full lg:hidden gap-5 overflow-x-auto border-t border-pink-500/20 mt-3 pt-3 text-[10px] tracking-widest uppercase whitespace-nowrap">
+                    <a href="#about" class="hover:text-pink-400 transition">Our Story</a>
+                    <a href="#memoryLane" class="hover:text-pink-400 transition">Memory Lane</a>
+                    <a href="#blessings" class="parents-love-link hover:text-pink-400 transition">Parent's Love <i class="fa-solid fa-heart parents-love-heart text-[9px]" aria-hidden="true"></i></a>
+                    <a href="#events" class="hover:text-pink-400 transition">Functions</a>
+                    <a href="#countdown" class="hover:text-pink-400 transition">Countdown</a>
+                    <a href="#dresscode" class="hover:text-pink-400 transition">Dress Code</a>
+                    <a href="#gallery" class="hover:text-pink-400 transition">Gallery</a>
+                    <a href="#wishes" class="hover:text-pink-400 transition">Wishes</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section with Scenic Banner -->
+        <section class="hero-banner min-h-screen flex flex-col justify-center items-center text-center px-4 pt-20 relative">
+            <div class="max-w-4xl mx-auto space-y-6 z-10">
+                <p class="text-pink-200 tracking-[0.35em] uppercase text-xs md:text-sm font-bold drop-shadow-md">WE ARE GETTING MARRIED</p>
+                
+                <h1 class="font-serifTitle text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-bold tracking-wide mt-8 mb-4 py-2 flex items-center justify-center flex-nowrap gap-1 sm:gap-2">
+                    <span class="pink-neon-text whitespace-nowrap">Aradhya</span>
+                    <span class="text-3xl sm:text-5xl md:text-7xl lg:text-8xl shrink-0" role="img" aria-label="heart">❤️</span>
+                    <span class="pink-neon-text whitespace-nowrap">Rahul</span>
+                </h1>
+
+                <p class="text-lg md:text-2xl text-pink-100 font-serifTitle italic tracking-wide max-w-2xl mx-auto leading-relaxed drop-shadow-md">
+                    "Two souls destined by universe, nurtured with love, uniting for seven lifetimes of joy, togetherness, and infinite memories."
+                </p>
+
+                <div class="pt-6">
+                    <p class="text-xs tracking-[0.25em] text-pink-200 uppercase border-y border-pink-400/40 py-3 inline-block px-8 backdrop-blur-md bg-black/30 rounded-full shadow-lg">
+                        November 24, 2026 • An Eternal Celebration Of Love
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="memory-ribbon" aria-label="Rahul and Aradhya: a lifetime of little moments and sweet memories">
+            <div class="memory-ribbon-track" aria-hidden="true">
+                <span>Rahul &amp; Aradhya&nbsp; ✦ &nbsp;A lifetime of little moments&nbsp; ✦ &nbsp;One love, countless memories&nbsp; ✦ &nbsp;Always choose each other&nbsp; ✦ &nbsp;</span>
+                <span>Rahul &amp; Aradhya&nbsp; ✦ &nbsp;A lifetime of little moments&nbsp; ✦ &nbsp;One love, countless memories&nbsp; ✦ &nbsp;Always choose each other&nbsp; ✦ &nbsp;</span>
+            </div>
+        </div>
+
+        <!-- Wedding Countdown -->
+        <section id="countdown" class="py-20 px-6 max-w-5xl mx-auto">
+            <div class="glass-card rounded-3xl p-8 md:p-12 text-center border border-pink-500/20">
+                <p id="countdownEyebrow" class="text-pink-300 text-xs tracking-[0.35em] uppercase font-semibold mb-3">The Big Day Is Almost Here</p>
+                <h2 id="countdownHeading" class="font-script text-5xl md:text-6xl text-pink-400 mb-3">Countdown to Forever</h2>
+                <p class="font-serifTitle text-xl md:text-2xl text-pink-100 mb-8">Celebrating Rahul &amp; Aradhya  · November 24, 2026</p>
+
+                <figure class="save-the-date-card">
+                    <img src="Candlelit Café Romance with Heart Doodles.png" alt="Save the date: Rahul and Aradhya, 24 November 2026" loading="lazy" decoding="async">
+                </figure>
+
+                <div class="mb-8 inline-flex flex-col items-center rounded-2xl border border-pink-400/20 bg-pink-950/30 px-6 py-4" aria-label="Current date and time in India">
+                    <span id="indiaLiveDate" class="text-sm font-semibold tracking-wide text-pink-100">Loading date...</span>
+                    <time id="indiaLiveTime" class="mt-1 text-xl font-bold tabular-nums text-yellow-300">Loading time...</time>
+                    <span class="mt-1 text-[9px] uppercase tracking-[0.25em] text-pink-300/70">Live time · India Standard Time</span>
+                </div>
+
+                <div id="countdownTimer" class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto" role="timer" aria-label="Time remaining until the wedding">
+                    <div class="rounded-2xl bg-pink-950/40 border border-pink-500/20 p-5">
+                        <span id="countdownDays" class="block text-4xl md:text-5xl font-serifTitle font-bold text-pink-200 tabular-nums">--</span>
+                        <span class="mt-2 block text-[10px] tracking-[0.2em] uppercase text-pink-300/70">Days</span>
+                    </div>
+                    <div class="rounded-2xl bg-pink-950/40 border border-pink-500/20 p-5">
+                        <span id="countdownHours" class="block text-4xl md:text-5xl font-serifTitle font-bold text-pink-200 tabular-nums">--</span>
+                        <span class="mt-2 block text-[10px] tracking-[0.2em] uppercase text-pink-300/70">Hours</span>
+                    </div>
+                    <div class="rounded-2xl bg-pink-950/40 border border-pink-500/20 p-5">
+                        <span id="countdownMinutes" class="block text-4xl md:text-5xl font-serifTitle font-bold text-pink-200 tabular-nums">--</span>
+                        <span class="mt-2 block text-[10px] tracking-[0.2em] uppercase text-pink-300/70">Minutes</span>
+                    </div>
+                    <div class="rounded-2xl bg-pink-950/40 border border-pink-500/20 p-5">
+                        <span id="countdownSeconds" class="block text-4xl md:text-5xl font-serifTitle font-bold text-pink-200 tabular-nums">--</span>
+                        <span class="mt-2 block text-[10px] tracking-[0.2em] uppercase text-pink-300/70">Seconds</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Love Story Section -->
+        <section id="about" class="py-24 px-6 max-w-5xl mx-auto">
+            <div class="text-center mb-16 space-y-3">
+                <h2 class="font-script text-5xl text-pink-400">Our Story</h2>
+                <p class="font-serifTitle text-3xl text-pink-100 font-semibold tracking-wide">How Destiny Wove Our Path</p>
+            </div>
+
+            <div class="space-y-12">
+                <div class="glass-card glass-card-hover p-8 rounded-3xl flex flex-col md:flex-row items-center gap-8">
+                    <div class="w-24 h-24 rounded-full bg-pink-900/50 flex items-center justify-center shrink-0 border border-pink-500/40 shadow-inner">
+                        <i class="fa-solid fa-heart text-3xl text-pink-400"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <span class="text-pink-400 text-sm font-semibold tracking-widest uppercase">The First Hello</span>
+                        <h3 class="text-2xl font-serifTitle text-pink-100 font-bold mt-1">A Quiet Spark of Destiny</h3>
+                        <p class="text-pink-200/80 mt-2 leading-relaxed">It started as a simple conversation, but within moments, both Aradhya and Rahul felt an unspoken connection—like finding a home in someone's heart they never knew they were searching for.</p>
+                    </div>
+                    <img
+                        src="Our%20First%20Hello.png"
+                        alt="Rahul and Aradhya smiling together during their first hello"
+                        loading="lazy"
+                        decoding="async"
+                        class="w-full md:w-56 lg:w-72 h-56 md:h-48 lg:h-56 object-cover object-center rounded-2xl border border-pink-500/30 shadow-lg shrink-0"
+                    >
+                </div>
+
+                <div class="glass-card glass-card-hover p-8 rounded-3xl flex flex-col md:flex-row items-center gap-8">
+                    <div class="w-24 h-24 rounded-full bg-pink-900/50 flex items-center justify-center shrink-0 border border-pink-500/40 shadow-inner">
+                        <i class="fa-solid fa-ring text-3xl text-pink-400"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <span class="text-pink-400 text-sm font-semibold tracking-widest uppercase">The Forever Vow</span>
+                        <h3 class="text-2xl font-serifTitle text-pink-100 font-bold mt-1">A Lifetime of Unconditional Love</h3>
+                        <p class="text-pink-200/80 mt-2 leading-relaxed">Surrounded by serene silence and starry skies, Rahul asked the ultimate question. With joyous tears and a smile that lit up the night, Aradhya promised her forever.</p>
+                    </div>
+                    <img
+                        src="The%20forever.png"
+                        alt="Aradhya and Rahul showing their wedding rings"
+                        loading="lazy"
+                        decoding="async"
+                        class="w-full md:w-56 lg:w-72 h-56 md:h-48 lg:h-56 object-cover object-center rounded-2xl border border-pink-500/30 shadow-lg shrink-0"
+                    >
+                </div>
+            </div>
+        </section>
+
+        <section id="memoryLane" class="py-20 px-6 max-w-6xl mx-auto text-center">
+            <div class="mb-10 space-y-3">
+                <p class="text-xs uppercase tracking-[0.3em] text-yellow-300/80">Little moments, forever stories</p>
+                <h2 class="font-script text-5xl md:text-6xl text-pink-400">Our Memory Lane</h2>
+                <p class="font-serifTitle text-xl text-pink-100">Some memories make us smile. The best ones make us smile every time.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-left">
+                <article class="glass-card glass-card-hover rounded-3xl p-6">
+                    <span class="text-3xl" aria-hidden="true">💌</span>
+                    <h3 class="mt-4 font-serifTitle text-2xl font-bold text-pink-100">That first hello</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-pink-200/80">A simple hello can become the beginning of a story the heart never wants to end.</p>
+                </article>
+                <article class="glass-card glass-card-hover rounded-3xl p-6">
+                    <span class="text-3xl" aria-hidden="true">😄</span>
+                    <h3 class="mt-4 font-serifTitle text-2xl font-bold text-pink-100">The shared laughter</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-pink-200/80">A little nok-jhok, a lot of laughter—and suddenly even an ordinary day becomes a favorite memory.</p>
+                </article>
+                <article class="glass-card glass-card-hover rounded-3xl p-6">
+                    <span class="text-3xl" aria-hidden="true">✨</span>
+                    <h3 class="mt-4 font-serifTitle text-2xl font-bold text-pink-100">More memories ahead</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-pink-200/80">Today’s photographs will become tomorrow’s stories. The sweetest memories are still waiting to be made.</p>
+                </article>
+            </div>
+            <div class="mx-auto mt-8 max-w-2xl rounded-3xl border border-yellow-400/20 bg-pink-950/30 p-6">
+                <p class="text-xs uppercase tracking-[0.25em] text-yellow-300/80">A little note for the heart</p>
+                <p id="memoryLaneNote" class="mt-3 font-serifTitle text-xl italic text-pink-100" aria-live="polite">The best kind of forever is made from little moments together. ❤️</p>
+                <button type="button" onclick="showMemoryLaneNote()" class="mt-5 rounded-full border border-yellow-400/40 px-5 py-2 text-xs font-bold text-yellow-200 transition hover:bg-yellow-400/10">Open another little memory ✨</button>
+            </div>
+        </section>
+
+        <!-- Parents' Blessings Section -->
+        <section id="blessings" class="py-24 px-6 max-w-6xl mx-auto">
+            <div class="text-center mb-16 space-y-3">
+                <h2 class="font-script text-5xl text-pink-400">Pillar of Our Strength</h2>
+                <p class="font-serifTitle text-3xl text-pink-100 font-semibold tracking-wide">Mata-Pita Ke Aashirwad</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="glass-card glass-card-hover p-8 rounded-3xl text-center space-y-4">
+                    <div class="w-32 h-32 mx-auto rounded-full overflow-hidden border border-pink-500/40 shadow-lg">
+                        <img src="c6305bf4-c0f2-4442-b0f4-8494cf91375d.png" alt="Bride's family at the wedding celebration" width="128" height="128" loading="lazy" decoding="async" class="w-full h-full object-cover object-center scale-150 origin-top">
+                    </div>
+                    <h3 class="font-serifTitle text-2xl font-bold text-pink-100">Bride's Loving Family</h3>
+                    <p class="text-xs text-pink-300 font-semibold leading-relaxed">
+                        Parents: Smt. Geeta &amp; Late. Shivanand Bhardwaj<br>
+                        Brother: Mr. Abhishek Bhardwaj<br>
+                        Grandfather: Late. Jung Bahadur Bhardwaj
+                    </p>
+                    <p class="text-pink-200/80 italic text-sm leading-relaxed pt-2">
+                        "Seeing our precious daughter Aradhya begin this sacred new chapter with Rahul fills our hearts with pride, happiness, and eternal prayers. May your bond grow deeper with every passing day."
+                    </p>
+                </div>
+
+                <div class="glass-card glass-card-hover p-8 rounded-3xl text-center space-y-4">
+                    <div class="w-32 h-32 mx-auto rounded-full overflow-hidden border border-pink-500/40 shadow-lg">
+                        <img src="Festive Back-to-Back Couple Portrait-1.png" alt="Rahul's parents at the wedding celebration" width="128" height="128" loading="lazy" decoding="async" class="w-full h-full object-cover object-top scale-150 origin-top">
+                    </div>
+                    <h3 class="font-serifTitle text-2xl font-bold text-pink-100">Groom's Loving Family</h3>
+                    <p class="text-xs text-pink-300 font-semibold leading-relaxed">
+                        Parents: Smt. Shiv Devi (Pradhan) &amp; Mr.Rajendra Singh (Pradhan)<br>
+                        Sisters: Vineeta &amp; Damini<br>
+                        Grandfather: Late. Hajarilal
+                    </p>
+                    <p class="text-pink-200/80 italic text-sm leading-relaxed pt-2">
+                        "We welcome Aradhya into our home with open arms and endless love. May Rahul and Aradhya build a lifetime of warmth, laughter, mutual respect, and infinite blessings."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+       
+        <section id="events" class="py-24 px-6 max-w-7xl mx-auto">
+            <div class="text-center mb-16 space-y-3">
+                <h2 class="font-script text-5xl text-pink-400">Wedding Schedule</h2>
+                <p class="font-serifTitle text-3xl text-pink-100 font-semibold tracking-wide">Celebration Itinerary</p>
+           <!-- Wedding Schedule Section -->  </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass-card glass-card-hover p-6 rounded-3xl text-center space-y-4">
+                    <div class="w-14 h-14 mx-auto rounded-2xl bg-pink-900/50 flex items-center justify-center border border-pink-500/30">
+                        <i class="fa-solid fa-sun text-xl text-pink-400"></i>
+                    </div>
+                    <h3 class="font-serifTitle text-2xl font-bold text-pink-100">Mandap Samaroh</h3>
+                    <p class="text-pink-300 text-xs"><i class="fa-regular fa-calendar mr-1"></i>Monday, Nov 23, 2026 • 11:00 AM</p>
+                    <p class="text-pink-200/70 text-xs leading-relaxed">Mandap Samaroh and lunch at Vill. Dhanari Patti Balu Shankar, Sambhal.</p>
+                    <a href="https://www.google.com/maps/place/Rajendra+pradhan+ji/@28.3494842,78.5007215,1334m/data=!3m2!1e3!4b1!4m6!3m5!1s0x390b2f00613d8137:0xe41d2cb71baf2b8d!8m2!3d28.3494795!4d78.5032964!16s%2Fg%2F11m6_9jytv?entry=ttu&g_ep=EgoyMDI2MTAyNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="inline-block pt-2 text-[11px] font-semibold text-pink-400 hover:text-pink-200 tracking-wider uppercase"><i class="fa-solid fa-location-dot mr-1"></i> Venue Map</a>
+                </div>
+
+                <div class="glass-card glass-card-hover p-6 rounded-3xl text-center space-y-4">
+                    <div class="w-14 h-14 mx-auto rounded-2xl bg-pink-900/50 flex items-center justify-center border border-pink-500/30">
+                        <i class="fa-solid fa-music text-xl text-pink-400"></i>
+                    </div>
+                    <h3 class="font-serifTitle text-2xl font-bold text-pink-100">Ghurchadi</h3>
+                    <p class="text-pink-300 text-xs"><i class="fa-regular fa-calendar mr-1"></i>Tuesday, Nov 24, 2026 • 03:00 PM</p>
+                    <p class="text-pink-200/70 text-xs leading-relaxed">The wedding-day Ghurchadi ceremony before the Barat departs.</p>
+                    <a href="https://www.google.com/maps/place/B.R+Resort/@28.3816824,78.6028914,1334m/data=!3m2!1e3!4b1!4m6!3m5!1s0x390b2700450023c9:0x808b9d7bf3b8aa44!8m2!3d28.3816777!4d78.6054663!16s%2Fg%2F11xv4qj4fv?entry=ttu&g_ep=EgoyMDI2MTAyNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="inline-block pt-2 text-[11px] font-semibold text-pink-400 hover:text-pink-200 tracking-wider uppercase"><i class="fa-solid fa-location-dot mr-1"></i> Venue Map</a>
+                </div>
+
+                <div class="glass-card glass-card-hover p-6 rounded-3xl text-center space-y-4 border-2 border-pink-500/60 shadow-xl shadow-pink-600/20">
+                    <div class="w-14 h-14 mx-auto rounded-2xl bg-pink-900/50 flex items-center justify-center border border-pink-500/30">
+                        <i class="fa-solid fa-fire-flame-curved text-xl text-pink-400"></i>
+                    </div>
+                    <h3 class="font-serifTitle text-2xl font-bold text-pink-100">Barat &amp; Jaimala</h3>
+                    <p class="text-pink-300 text-xs"><i class="fa-regular fa-calendar mr-1"></i>Tuesday, Nov 24, 2026 • Barat 04:00 PM · Jaimala 10:00 PM</p>
+                    <p class="text-pink-200/70 text-xs leading-relaxed">Barat departure at 4:00 PM, dinner at 7:00 PM, and Jaimala at 10:00 PM.</p>
+                    <a href="https://www.google.com/maps/place/B.R+Resort/@28.3816824,78.6028914,1334m/data=!3m2!1e3!4b1!4m6!3m5!1s0x390b2700450023c9:0x808b9d7bf3b8aa44!8m2!3d28.3816777!4d78.6054663!16s%2Fg%2F11xv4qj4fv?entry=ttu&g_ep=EgoyMDI2MTAyNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="inline-block pt-2 text-[11px] font-semibold text-pink-400 hover:text-pink-200 tracking-wider uppercase"><i class="fa-solid fa-location-dot mr-1"></i> Venue Map</a>
+                </div>
+
+                <div class="glass-card glass-card-hover p-6 rounded-3xl text-center space-y-4">
+                    <div class="w-14 h-14 mx-auto rounded-2xl bg-pink-900/50 flex items-center justify-center border border-pink-500/30">
+                        <i class="fa-solid fa-champagne-glasses text-xl text-pink-400"></i>
+                    </div>
+                    <h3 class="font-serifTitle text-2xl font-bold text-pink-100">Badhu Agman</h3>
+                    <p class="text-pink-300 text-xs"><i class="fa-regular fa-calendar mr-1"></i>Wednesday, Nov 25, 2026 • 06:00 AM</p>
+                    <p class="text-pink-200/70 text-xs leading-relaxed">Welcome the bride at B.R. Resort, Babrala Road, Bahjoi (Sambhal).</p>
+                    <a href="https://www.google.com/maps/place/Rajendra+pradhan+ji/@28.3494842,78.5007215,1334m/data=!3m2!1e3!4b1!4m6!3m5!1s0x390b2f00613d8137:0xe41d2cb71baf2b8d!8m2!3d28.3494795!4d78.5032964!16s%2Fg%2F11m6_9jytv?entry=ttu&g_ep=EgoyMDI2MTAyNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="inline-block pt-2 text-[11px] font-semibold text-pink-400 hover:text-pink-200 tracking-wider uppercase"><i class="fa-solid fa-location-dot mr-1"></i> Venue Map</a>
+                </div>
+            </div>
+
+            <div class="mt-8">
+                <div class="glass-card glass-card-hover p-6 md:p-8 rounded-3xl border border-pink-500/40 shadow-xl shadow-pink-600/15">
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-16 h-16 rounded-2xl bg-pink-900/50 flex items-center justify-center border border-pink-500/30 shrink-0">
+                                <i class="fa-solid fa-heart text-2xl text-pink-400"></i>
+                            </div>
+                            <div class="text-left">
+                                <p class="text-[10px] uppercase tracking-[0.25em] text-pink-300/80">Sacred Pheras</p>
+                                <h3 class="font-serifTitle text-2xl md:text-3xl font-bold text-pink-100 mt-1">Wednesday, Nov 24, 2026 • 04:00 AM</h3>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col md:flex-row items-center gap-4 md:gap-6 text-center md:text-left">
+                            <p class="text-sm md:text-base font-medium text-pink-200/80">Venue Map — B.R. Resort</p>
+                            <a href="https://www.google.com/maps/place/B.R+Resort/@28.3816824,78.6028914,1334m/data=!3m2!1e3!4b1!4m6!3m5!1s0x390b2700450023c9:0x808b9d7bf3b8aa44!8m2!3d28.3816777!4d78.6054663!16s%2Fg%2F11xv4qj4fv?entry=ttu&g_ep=EgoyMDI2MTAyNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="inline-flex items-center gap-2 rounded-full border border-pink-500/40 bg-pink-950/40 px-4 py-2 text-[11px] font-semibold uppercase tracking-wider text-pink-200 hover:text-white hover:bg-pink-900 transition">
+                                <i class="fa-solid fa-location-dot"></i>
+                                Venue Map
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dress Code Guide -->
+        <section id="dresscode" class="py-20 px-6 max-w-6xl mx-auto">
+            <div class="text-center mb-16 space-y-3">
+                <h2 class="font-script text-5xl text-pink-400">Attire Guide</h2>
+                <p class="font-serifTitle text-3xl text-pink-100 font-semibold tracking-wide">Dress Code Suggestions</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass-card haldi-mehndi-card p-6 rounded-2xl text-center space-y-3 border border-pink-500/40">
+                    <i class="fa-solid fa-shirt text-3xl text-yellow-300"></i>
+                    <h4 class="font-serifTitle text-xl font-bold text-pink-100">Haldi & Mehendi</h4>
+                    <p class="text-xs text-pink-200/70">Pastel Yellow, Coral, or Floral Indian Ethnics & Kurta Sets.</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl text-center space-y-3 border border-pink-500/40">
+                    <i class="fa-solid fa-user-tie text-3xl text-pink-400"></i>
+                    <h4 class="font-serifTitle text-xl font-bold text-pink-100">Wedding Ceremony</h4>
+                    <p class="text-xs text-pink-200/70">Royal Indian Wear: Lehengas, Sherwanis & Regal Ethnic Attire.</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl text-center space-y-3">
+                    <i class="fa-solid fa-vest-patches text-3xl text-pink-400"></i>
+                    <h4 class="font-serifTitle text-xl font-bold text-pink-100">Grand Reception</h4>
+                    <p class="text-xs text-pink-200/70">Cocktail Elegance, Tuxedos, Blazers & Designer Gowns.</p>
+                </div>
+            </div>
+        </section>
+        <div class="wedding-gallery-layout">
+                <section id="weddingInvitation" class="wedding-invitation-section py-16 px-4 text-center">
+            <div class="max-w-3xl mx-auto space-y-3 mb-8">
+                <h2 class="font-script text-5xl text-pink-400">Rahul &amp; Aradhya</h2>
+                <p class="text-xs uppercase tracking-[0.25em] text-pink-200">Wedding Invitation • 2026</p>isko 
+            </div>
+            <div class="wedding-invitation-experience">
+                <div class="wedding-card-perspective" id="cardContainer" onclick="flipWeddingCard()">
+                    <div class="wedding-invitation-card" id="card1">
+                        <img src="Gemini_Generated_Image_yrh7k5yrh7k5yrh7.png" alt="Rahul and Aradhya's wedding invitation displayed as an open keepsake book" draggable="false" decoding="async">
+                    </div>
+                    <div class="wedding-invitation-card" id="card2">
+                        <img src="rahul-aradhya-family.png" alt="Rahul and Aradhya family wedding invitation" draggable="false">
+                    </div>
+                    <div class="wedding-invitation-card" id="card3">
+                        <img src="rahul-aradhya-moments.png" alt="Rahul and Aradhya wedding schedule and venue" draggable="false">
+                    </div>
+                </div>
+                <div class="flex flex-wrap justify-center items-center gap-3 pt-5">
+                    <button type="button" onclick="changeWeddingCard(-1, event)" class="px-5 py-2.5 bg-pink-950/60 hover:bg-pink-900 text-yellow-300 text-xs font-bold rounded-xl border border-yellow-500/40 shadow-lg transition">Previous Card</button>
+                    <span id="pageIndicator" class="text-xs font-bold text-pink-300 min-w-16">Card 1 / 3</span>
+                    <button type="button" onclick="changeWeddingCard(1, event)" class="px-6 py-2.5 bg-gradient-to-r from-yellow-600 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 text-white text-xs font-bold uppercase tracking-wider rounded-xl shadow-lg transition">Flip Next</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="py-16 px-6 w-full max-w-5xl mx-auto text-center space-y-6">
+            <div class="space-y-1">
+                <h2 class="font-script text-5xl text-yellow-400">Sweet Memories</h2>
+                <p class="text-xs uppercase tracking-widest text-pink-300">Rahul &amp; Aradhya Golden Moments</p>
+            </div>
+            <div class="carousel-3d-stage">
+                <div class="carousel-3d-ring" id="carouselRing">
+                    <button type="button" class="carousel-3d-card" onclick="openLightbox('Candlelit Café Romance with Heart Doodles.png')" aria-label="View Rahul and Aradhya's save the date">
+                        <img src="Candlelit Café Romance with Heart Doodles.png" alt="Rahul and Aradhya's save the date" decoding="async">
+                    </button>
+                    
+                    <button type="button" class="carousel-3d-card" onclick="openLightbox('Our First Hello.png')" aria-label="View Rahul and Aradhya together">
+                        <img src="Our First Hello.png" alt="Rahul and Aradhya together" decoding="async">
+                    </button>
+                    <button type="button" class="carousel-3d-card" onclick="openLightbox('Photos.png')" aria-label="View a sweet memory of Rahul and Aradhya">
+                        <img src="Photos.png" alt="A sweet memory of Rahul and Aradhya" decoding="async">
+                    </button>
+                    <button type="button" class="carousel-3d-card" onclick="openLightbox('Sunset Beach Couple Selfie.png')" aria-label="View Rahul and Aradhya at sunset">
+                        <img src="Sunset Beach Couple Selfie.png" alt="Rahul and Aradhya together at sunset" decoding="async">
+                    </button>
+                    <button type="button" class="carousel-3d-card" onclick="openLightbox('The forever.png')" aria-label="View Rahul and Aradhya's forever memory">
+                        <img src="The forever.png" alt="Rahul and Aradhya's forever memory" decoding="async">
+                    </button>
+                    <button type="button" class="carousel-3d-card" onclick="openLightbox('Traditional Punjabi Couple Portrait.png')" aria-label="View Rahul and Aradhya at a traditional celebration">
+                        <img src="Traditional Punjabi Couple Portrait.png" alt="Rahul and Aradhya at a traditional celebration" decoding="async">
+                    </button>
+                    
+                  
+                   
+                    <button type="button" class="carousel-3d-card" onclick="openLightbox('rahul-aradhya-selfie.png')" aria-label="View Rahul and Aradhya smiling together">
+                        <img src="rahul-aradhya-selfie.png" alt="Rahul and Aradhya smiling together in a selfie" decoding="async">
+                    </button>
+                    <button type="button" class="carousel-3d-card" onclick="openLightbox('real-estate-couple.png')" aria-label="View Rahul and Aradhya in the mountains">
+                        <img src="real-estate-couple.png" alt="Rahul and Aradhya together in the mountains" decoding="async">
+                    </button>
+                </div>
+            </div>
+            <div class="mx-auto max-w-md rounded-2xl border border-pink-400/20 bg-pink-950/30 px-5 py-4 shadow-lg">
+                <p class="text-[10px] uppercase tracking-[0.25em] text-yellow-300/80">A little note to remember</p>
+                <p id="memoryCaption" class="mt-2 font-serifTitle text-lg italic text-pink-100">Best travel plan: side by side, wherever life takes you. ❤️</p>
+            </div>
+            <div class="flex flex-wrap justify-center items-center gap-3 pt-2">
+                <button type="button" onclick="rotateGallery(-1)" class="px-4 py-2 bg-pink-950/60 hover:bg-pink-900 text-yellow-300 text-xs font-bold rounded-xl border border-yellow-500/40 shadow-lg transition">Previous</button>
+                <button type="button" onclick="toggleAutoRotate()" id="playPauseBtn" class="px-4 py-2 bg-yellow-600/30 hover:bg-yellow-600/50 text-yellow-300 text-xs font-bold rounded-xl border border-yellow-500/40 shadow-lg transition" aria-pressed="true">Pause Auto-Play</button>
+                <button type="button" onclick="rotateGallery(1)" class="px-4 py-2 bg-pink-950/60 hover:bg-pink-900 text-yellow-300 text-xs font-bold rounded-xl border border-yellow-500/40 shadow-lg transition">Next</button>
+            </div>
+        </section>
+
+        <section id="arcLoveGallery" class="arc-love-gallery py-20 px-6 w-full max-w-6xl mx-auto text-center">
+            <div class="space-y-2 mb-8">
+                <p class="text-xs uppercase tracking-[0.35em] text-yellow-300/80">Our story in motion</p>
+                <h2 class="font-script text-5xl text-pink-400">A little glimpse of forever</h2>
+            </div>
+
+            <div class="arc-love-shell">
+                <div class="arc-love-stage" id="arcLoveStage">
+                    <div class="arc-love-track" id="arcLoveTrack" aria-live="polite"></div>
+                </div>
+                <div class="arc-love-caption" id="arcLoveCaption">
+                    <p class="arc-love-number" id="arcLoveNumber">01 / 05</p>
+                    <h3 id="arcLoveTitle">Our First Hello</h3>
+                    <p id="arcLoveMeta">Mountain getaway • 2022</p>
+                </div>
+            </div>
+        </section>
+        </div>
+
+        <style>
+            .wedding-gallery-layout {
+                display: grid;
+                grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+                align-items: center;
+                gap: clamp(16px, 3vw, 48px);
+                width: min(100%, 1440px);
+                margin: 0 auto;
+                padding: 20px clamp(12px, 3vw, 40px);
+            }
+            .wedding-gallery-layout #gallery,
+            .wedding-gallery-layout #weddingInvitation {
+                width: 100%;
+                max-width: none;
+                min-width: 0;
+                margin: 0;
+            }
+            .wedding-gallery-layout #gallery h2 {
+                font-size: clamp(2.5rem, 3.2vw, 3rem);
+            }
+            .wedding-gallery-layout #gallery {
+                grid-column: 1;
+                grid-row: 1;
+            }
+            .wedding-gallery-layout #weddingInvitation {
+                grid-column: 2;
+                grid-row: 1;
+            }
+            .wedding-invitation-section {
+                position: relative;
+                z-index: 1;
+                overflow: hidden;
+                background: linear-gradient(180deg, rgba(47, 5, 24, 0.3), rgba(11, 3, 10, 0.72));
+            }
+            .wedding-invitation-experience {
+                width: min(100%, 440px);
+                margin: 0 auto;
+            }
+            .wedding-card-perspective {
+                position: relative;
+                width: min(100%, 420px);
+                aspect-ratio: 3 / 4;
+                margin: 0 auto;
+                perspective: 1500px;
+                cursor: pointer;
+            }
+            .wedding-invitation-card {
+                position: absolute;
+                inset: 0;
+                overflow: hidden;
+                border-radius: 12px;
+                background: #fff;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.65);
+                transform-origin: top center;
+                transition: transform 0.9s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.7s ease;
+                backface-visibility: hidden;
+            }
+            .wedding-invitation-card img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+            .wedding-magic-particle {
+                position: fixed;
+                z-index: 999;
+                pointer-events: none;
+                font-size: 24px;
+                line-height: 1;
+                animation: weddingMagicFloat 2s ease-out forwards;
+                will-change: transform, opacity;
+            }
+            @keyframes weddingMagicFloat {
+                0% { opacity: 1; transform: translateY(0) scale(0.6) rotate(0deg); }
+                50% { opacity: 0.9; transform: translateY(-80px) scale(1.3) rotate(20deg); }
+                100% { opacity: 0; transform: translateY(-160px) scale(0.4) rotate(-30deg); }
+            }
+            @media (prefers-reduced-motion: reduce) {
+                .wedding-magic-particle { animation-duration: 0.01ms; }
+            }
+            #card1 { z-index: 3; }
+            #card2 { z-index: 2; }
+            #card3 { z-index: 1; }
+            .wedding-card-perspective.step-1 #card1,
+            .wedding-card-perspective.step-2 #card1,
+            .wedding-card-perspective.step-2 #card2 {
+                transform: rotateX(-160deg);
+                opacity: 0;
+                pointer-events: none;
+            }
+            .carousel-3d-stage {
+                --carousel-radius: clamp(360px, 43vw, 520px);
+                position: relative;
+                display: flex;
+                width: 100%;
+                height: clamp(340px, 38vw, 440px);
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+                perspective: 1400px;
+                -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+                mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+            }
+            .carousel-3d-ring {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: clamp(200px, 24vw, 280px);
+                aspect-ratio: 4 / 3;
+                transform: translate(-50%, -50%);
+                transform-style: preserve-3d;
+                transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+            }
+            .carousel-3d-card {
+                position: absolute;
+                top: 0;
+                left: 0;
+                display: block;
+                width: 100%;
+                height: 100%;
+                padding: 0;
+                overflow: hidden;
+                border: 3px solid #d4af37;
+                border-radius: 14px;
+                background: #140205;
+                box-shadow: 0 15px 32px rgba(0, 0, 0, 0.55), 0 0 18px rgba(212, 175, 55, 0.18);
+                cursor: pointer;
+                transform: rotateY(var(--carousel-angle)) translateZ(var(--carousel-radius));
+                backface-visibility: hidden;
+            }
+            #gallery .carousel-3d-card img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                object-position: center;
+                transition: transform 650ms cubic-bezier(0.2, 0.7, 0.5, 1), filter 650ms ease;
+            }
+            #gallery .carousel-3d-card:hover img,
+            #gallery .carousel-3d-card:focus-visible img {
+                transform: scale(1.035);
+                filter: brightness(1.08);
+            }
+            @media (prefers-reduced-motion: reduce) {
+                .carousel-3d-ring {
+                    transition-duration: 0.01ms;
+                }
+                #gallery .carousel-3d-card img {
+                    transition-duration: 0.01ms;
+                }
+            }
+            .arc-love-gallery {
+                position: relative;
+                width: min(100%, 1280px);
+                margin: 0 auto;
+                padding-bottom: 40px;
+            }
+            .arc-love-shell {
+                display: grid;
+                grid-template-columns: minmax(0, 1.4fr) minmax(220px, 0.6fr);
+                align-items: center;
+                gap: clamp(20px, 4vw, 48px);
+                max-width: 1100px;
+                margin: 0 auto;
+            }
+            .arc-love-stage {
+                position: relative;
+                height: clamp(360px, 40vw, 520px);
+                overflow: hidden;
+                border-radius: 26px;
+                background: radial-gradient(circle at center, rgba(255, 214, 115, 0.14), rgba(15, 10, 19, 0) 58%);
+            }
+            .arc-love-track {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                transform: translate3d(0, 0, 0);
+            }
+            .arc-love-card {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                width: min(42vw, 280px);
+                aspect-ratio: 1.56;
+                border: 1px solid rgba(255, 214, 115, 0.4);
+                border-radius: 26px;
+                overflow: hidden;
+                background: #12070d;
+                box-shadow: 0 18px 40px rgba(0, 0, 0, 0.32), 0 0 24px rgba(255, 214, 115, 0.12);
+                padding: 0;
+                cursor: pointer;
+                transform-origin: center center;
+                will-change: transform, opacity, filter;
+            }
+            .arc-love-card img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                pointer-events: none;
+            }
+            .arc-love-card::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.26));
+            }
+            .arc-love-caption {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                text-align: left;
+                gap: 10px;
+                padding: 24px 18px 24px 0;
+                color: #fdf2f8;
+            }
+            .arc-love-number {
+                margin: 0;
+                font-size: 12px;
+                font-weight: 700;
+                letter-spacing: 0.28em;
+                text-transform: uppercase;
+                color: rgba(252, 211, 77, 0.85);
+            }
+            .arc-love-caption h3 {
+                margin: 0;
+                font-size: clamp(2rem, 3vw, 3.3rem);
+                line-height: 0.95;
+                letter-spacing: -0.04em;
+                color: #fde7f1;
+            }
+            .arc-love-caption p:last-child {
+                margin: 0;
+                font-size: 0.95rem;
+                color: rgba(252, 232, 244, 0.8);
+            }
+            @media (max-width: 768px) {
+                .arc-love-shell {
+                    grid-template-columns: 1fr;
+                }
+                .arc-love-caption {
+                    align-items: center;
+                    text-align: center;
+                    padding: 0 0 12px;
+                }
+                .arc-love-card {
+                    width: min(58vw, 260px);
+                }
+            }
+            @media (max-width: 640px) {
+                .wedding-gallery-layout {
+                    grid-template-columns: minmax(0, 1fr);
+                    gap: 12px;
+                }
+                .wedding-gallery-layout #gallery,
+                .wedding-gallery-layout #weddingInvitation {
+                    grid-column: 1;
+                }
+                .wedding-gallery-layout #gallery { grid-row: 1; }
+                .wedding-gallery-layout #weddingInvitation { grid-row: 2; }
+                .carousel-3d-stage { --carousel-radius: 410px; height: 340px; }
+                .carousel-3d-ring { width: min(52vw, 205px); }
+            }
+        </style>
+
+        <script>
+            let weddingCardStep = 0;
+            function renderWeddingCard() {
+                const cardContainer = document.getElementById("cardContainer");
+                cardContainer.className = `wedding-card-perspective${weddingCardStep ? ` step-${weddingCardStep}` : ""}`;
+                document.getElementById("pageIndicator").textContent = `Card ${weddingCardStep + 1} / 3`;
+            }
+            function flipWeddingCard() {
+                weddingCardStep = (weddingCardStep + 1) % 3;
+                renderWeddingCard();
+            }
+            function changeWeddingCard(direction, event) {
+                event.stopPropagation();
+                weddingCardStep = (weddingCardStep + direction + 3) % 3;
+                renderWeddingCard();
+            }
+
+            const memoryLaneNotes = [
+                "The best kind of forever is made from little moments together. ❤️",
+                "May your camera roll be full, your hearts fuller, and your arguments always end with snacks. 😄",
+                "Years from now, may one small smile bring back a thousand lovely memories. ✨",
+                "Keep choosing each other—in the big celebrations and the wonderfully ordinary days. 💕"
+            ];
+            let lastMemoryLaneNote = 0;
+            function showMemoryLaneNote() {
+                const nextNote = (lastMemoryLaneNote + 1 + Math.floor(Math.random() * (memoryLaneNotes.length - 1))) % memoryLaneNotes.length;
+                document.getElementById("memoryLaneNote").textContent = memoryLaneNotes[nextNote];
+                lastMemoryLaneNote = nextNote;
+            }
+
+            const weddingCardContainer = document.getElementById("cardContainer");
+            const weddingCardEmojis = ["💖", "✨", "💐", "💍", "🌸", "⭐"];
+            weddingCardContainer.addEventListener("click", (event) => {
+                for (let index = 0; index < 5; index += 1) {
+                    const particle = document.createElement("span");
+                    particle.className = "wedding-magic-particle";
+                    particle.textContent = weddingCardEmojis[Math.floor(Math.random() * weddingCardEmojis.length)];
+                    particle.style.left = `${event.clientX + (Math.random() - 0.5) * 60}px`;
+                    particle.style.top = `${event.clientY + (Math.random() - 0.5) * 60}px`;
+                    document.body.appendChild(particle);
+                    window.setTimeout(() => particle.remove(), 2000);
+                }
+            });
+
+            const carouselRing = document.getElementById("carouselRing");
+            const galleryPlayPauseButton = document.getElementById("playPauseBtn");
+            const galleryCards = carouselRing.querySelectorAll(".carousel-3d-card");
+            const galleryPhotoCount = galleryCards.length;
+            galleryCards.forEach((card, index) => {
+                card.style.setProperty("--carousel-angle", `${index * (360 / galleryPhotoCount)}deg`);
+            });
+            const galleryMemoryCaptions = [
+                "A little date, a lifetime of memories. ❤️",
+                "Every page of our story is filled with love. ✨",
+                "The sweetest stories begin with a hello. 💕",
+                "Collecting little moments and big smiles. 😊",
+                "Side by side, wherever life takes us. 🌅",
+                "One promise, two hearts, forever together. 💍",
+                "Celebrating love, laughter, and new beginnings. 🌸",
+                "Together is our favorite place to be. ❤️",
+                "A beautiful invitation to our forever. 💌",
+                "Every moment with you is worth keeping. ✨",
+                "My favorite smile is the one beside me. 😊",
+                "Best travel plan: side by side, wherever life takes you. ❤️"
+            ];
+            let gallery3dIndex = 0;
+            let gallery3dInterval = null;
+            let gallery3dPlaying = true;
+            let gallery3dHovered = false;
+            let gallery3dFocused = false;
+
+            function updateGalleryRotation() {
+                carouselRing.style.transform = `translate(-50%, -50%) rotateY(${gallery3dIndex * -(360 / galleryPhotoCount)}deg)`;
+                document.getElementById("memoryCaption").textContent = galleryMemoryCaptions[gallery3dIndex];
+            }
+            function rotateGallery(direction) {
+                gallery3dIndex = (gallery3dIndex + direction + galleryPhotoCount) % galleryPhotoCount;
+                updateGalleryRotation();
+            }
+            function updateGalleryAutoRotate() {
+                const shouldRotate = gallery3dPlaying && !gallery3dHovered && !gallery3dFocused;
+                if (shouldRotate && gallery3dInterval === null) {
+                    gallery3dInterval = setInterval(() => rotateGallery(1), 3000);
+                } else if (!shouldRotate && gallery3dInterval !== null) {
+                    clearInterval(gallery3dInterval);
+                    gallery3dInterval = null;
+                }
+                galleryPlayPauseButton.textContent = gallery3dPlaying ? "Pause Auto-Play" : "Start Auto-Play";
+                galleryPlayPauseButton.setAttribute("aria-pressed", String(gallery3dPlaying));
+            }
+            function toggleAutoRotate() {
+                gallery3dPlaying = !gallery3dPlaying;
+                updateGalleryAutoRotate();
+            }
+
+            carouselRing.addEventListener("mouseenter", () => {
+                gallery3dHovered = true;
+                updateGalleryAutoRotate();
+            });
+            carouselRing.addEventListener("mouseleave", () => {
+                gallery3dHovered = false;
+                updateGalleryAutoRotate();
+            });
+            carouselRing.addEventListener("focusin", () => {
+                gallery3dFocused = true;
+                updateGalleryAutoRotate();
+            });
+            carouselRing.addEventListener("focusout", (event) => {
+                if (!carouselRing.contains(event.relatedTarget)) {
+                    gallery3dFocused = false;
+                    updateGalleryAutoRotate();
+                }
+            });
+            updateGalleryRotation();
+            updateGalleryAutoRotate();
+
+            const arcLoveItems = [
+                {
+                    src: "real-estate-couple.png",
+                    alt: "Rahul and Aradhya on a mountain getaway",
+                    title: "Our First Hello",
+                    meta: "Mountain getaway • 2022"
+                },
+                {
+                    src: "Our First Hello.png",
+                    alt: "Rahul and Aradhya smiling together",
+                    title: "Everyday Magic",
+                    meta: "Coffee dates • 2023"
+                },
+                {
+                    src: "Sunset Beach Couple Selfie.png",
+                    alt: "Rahul and Aradhya sharing a sunset beach selfie",
+                    title: "Forever Starts Here",
+                    meta: "Sunset beach • always"
+                },
+                {
+                    src: "Photos.png",
+                    alt: "A cheerful memory from the couple's moments together",
+                    title: "Laughing Through Life",
+                    meta: "Best friends turned soulmates • 2024"
+                },
+                {
+                    src: "The forever.png",
+                    alt: "Rahul and Aradhya embracing in a golden sunset scene",
+                    title: "The Forever We Dreamed Of",
+                    meta: "Golden hour • always"
+                }
+            ];
+
+            const arcLoveTrack = document.getElementById("arcLoveTrack");
+            const arcLoveNumber = document.getElementById("arcLoveNumber");
+            const arcLoveTitle = document.getElementById("arcLoveTitle");
+            const arcLoveMeta = document.getElementById("arcLoveMeta");
+            const arcLoveCards = [];
+            let arcLoveActiveIndex = 0;
+
+            function createArcLoveCards() {
+                arcLoveTrack.innerHTML = "";
+                arcLoveItems.forEach((item, index) => {
+                    const card = document.createElement("button");
+                    card.type = "button";
+                    card.className = "arc-love-card";
+                    card.setAttribute("aria-label", item.alt);
+                    card.innerHTML = `<img src="${item.src}" alt="${item.alt}" loading="lazy" draggable="false">`;
+                    card.addEventListener("click", () => {
+                        arcLoveActiveIndex = index;
+                        updateArcLoveCaption();
+                        updateArcLoveLayout(arcLoveActiveIndex);
+                    });
+                    arcLoveTrack.appendChild(card);
+                    arcLoveCards.push(card);
+                });
+            }
+
+            function updateArcLoveCaption() {
+                const item = arcLoveItems[arcLoveActiveIndex];
+                if (!item) return;
+                arcLoveNumber.textContent = `${String(arcLoveActiveIndex + 1).padStart(2, "0")} / ${String(arcLoveItems.length).padStart(2, "0")}`;
+                arcLoveTitle.textContent = item.title;
+                arcLoveMeta.textContent = item.meta;
+            }
+
+            function updateArcLoveLayout(position) {
+                const count = arcLoveItems.length;
+                arcLoveCards.forEach((card, index) => {
+                    const offset = (((index - position) % count) + count) % count;
+                    const wrapped = offset >= count / 2 ? offset - count : offset;
+                    const x = wrapped * 98;
+                    const y = -Math.abs(wrapped) * 42;
+                    const rotation = wrapped * 22;
+                    const scale = wrapped === 0 ? 1 : 0.82 - Math.abs(wrapped) * 0.06;
+                    const opacity = Math.abs(wrapped) > 2 ? 0.2 : 1;
+                    const brightness = 1 - Math.min(Math.abs(wrapped) * 0.12, 0.38);
+
+                    gsap.to(card, {
+                        x,
+                        y,
+                        rotation,
+                        scale,
+                        opacity,
+                        filter: `brightness(${brightness})`,
+                        zIndex: 100 - Math.abs(wrapped),
+                        duration: 0.8,
+                        ease: "power3.out",
+                        overwrite: true
+                    });
+                });
+            }
+
+            function syncArcLoveFromScroll() {
+                const progress = gsap.getProperty("#arcLoveGallery", "progress");
+                if (typeof progress !== "number") return;
+                const targetIndex = Math.round(progress * (arcLoveItems.length - 1));
+                const wrappedIndex = ((targetIndex % arcLoveItems.length) + arcLoveItems.length) % arcLoveItems.length;
+                if (wrappedIndex !== arcLoveActiveIndex) {
+                    arcLoveActiveIndex = wrappedIndex;
+                    updateArcLoveCaption();
+                }
+                updateArcLoveLayout(arcLoveActiveIndex);
+            }
+
+            createArcLoveCards();
+            updateArcLoveCaption();
+            updateArcLoveLayout(arcLoveActiveIndex);
+
+            gsap.registerPlugin(ScrollTrigger);
+            gsap.set("#arcLoveGallery .arc-love-card", { xPercent: -50, yPercent: -50, transformOrigin: "center center" });
+            gsap.to("#arcLoveGallery", {
+                scrollTrigger: {
+                    trigger: "#arcLoveGallery",
+                    start: "top 75%",
+                    end: "bottom 30%",
+                    scrub: 1.2,
+                    onUpdate: (self) => {
+                        const progress = self.progress;
+                        const targetIndex = Math.round(progress * (arcLoveItems.length - 1));
+                        const wrappedIndex = ((targetIndex % arcLoveItems.length) + arcLoveItems.length) % arcLoveItems.length;
+                        if (wrappedIndex !== arcLoveActiveIndex) {
+                            arcLoveActiveIndex = wrappedIndex;
+                            updateArcLoveCaption();
+                        }
+                        updateArcLoveLayout(arcLoveActiveIndex);
+                    }
+                }
+            });
+        </script>
+
+    </main>
+<section id="wishes" class="py-24 px-6 max-w-4xl mx-auto">
+    <div class="text-center mb-12 space-y-3">
+        <h2 class="font-script text-5xl text-pink-400">Guest Wall</h2>
+        <p class="font-serifTitle text-3xl text-pink-100 font-semibold tracking-wide">Make your Presence</p>
+    </div>
+
+    <div class="glass-card p-8 rounded-3xl mb-12">
+        <!-- onsubmit par WhatsApp function call hoga -->
+        <form id="wishForm" onsubmit="sendToWhatsApp(event)" class="space-y-4">
+            
+            <!-- Name & Relation (S/o, D/o, W/o) Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="md:col-span-2">
+                    <input type="text" id="wishName" placeholder="Your Full Name *" required class="w-full px-5 py-3 rounded-xl bg-pink-950/40 border border-pink-500/30 text-pink-100 placeholder-pink-300/40 focus:outline-none focus:border-pink-400">
+                </div>
+                <div>
+                    <input type="text" id="relationInfo" placeholder="S/o, D/o, W/o (Optional)" class="w-full px-5 py-3 rounded-xl bg-pink-950/40 border border-pink-500/30 text-pink-100 placeholder-pink-300/40 focus:outline-none focus:border-pink-400">
+                </div>
+            </div>
+
+            <!-- Number of Family Members Attending -->
+            <div>
+                <label class="block text-xs text-pink-200/80 mb-1 ml-1 font-medium">How many family members will attend the wedding?</label>
+                <input type="number" id="attendeesCount" min="1" max="20" placeholder="Number of Guests (e.g. 2, 4)" required class="w-full px-5 py-3 rounded-xl bg-pink-950/40 border border-pink-500/30 text-pink-100 placeholder-pink-300/40 focus:outline-none focus:border-pink-400">
+            </div>
+
+            <!-- Wishes & Message -->
+            <div>
+                <textarea id="wishMessage" rows="3" placeholder="Write your warm blessings for Aradhya & Rahul..." required class="w-full px-5 py-3 rounded-xl bg-pink-950/40 border border-pink-500/30 text-pink-100 placeholder-pink-300/40 focus:outline-none focus:border-pink-400"></textarea>
+            </div>
+
+            <!-- Digital Gift / Shagun Section (Optional UPI / QR) -->
+            <div class="p-4 rounded-2xl bg-pink-900/20 border border-pink-500/20 text-center space-y-2">
+                <p class="text-xs text-pink-200 font-semibold">🎁 Send Blessings / Digital Shagun</p>
+                <p class="text-xs text-pink-300/70">Google Pay / PhonePe / Paytm: <span class="text-pink-200 font-mono font-bold select-all">7417055731@upi</span></p>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="w-full py-3.5 rounded-xl bg-pink-600 hover:bg-pink-500 text-white font-medium text-sm tracking-wider uppercase transition shadow-lg shadow-pink-600/30">
+                Send Blessing & Confirm on WhatsApp
+            </button>
+        </form>
+    </div>
+
+    <!-- Feed Section -->
+    <div id="wishesFeed" class="space-y-4">
+        <div class="glass-card p-6 rounded-2xl">
+            <p class="text-pink-200/90 italic">"Wishing Aradhya and Rahul a lifetime of endless happiness, everlasting love, and beautiful moments!"</p>
+            <div class="mt-3 flex justify-between items-center text-xs text-pink-400 font-semibold">
+                <span>— Ananya & Vikram (S/o Ramesh Sharma)</span>
+                <span class="bg-pink-500/20 px-2.5 py-1 rounded-full text-pink-300">👥 4 Attending</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- JavaScript code jisse WhatsApp par message jayega -->
+<script>
+function sendToWhatsApp(event) {
+    event.preventDefault(); // Page reload hone se rokne ke liye
+
+    // Form se values lena
+    const name = document.getElementById('wishName').value.trim();
+    const relation = document.getElementById('relationInfo').value.trim();
+    const attendees = document.getElementById('attendeesCount').value.trim();
+    const message = document.getElementById('wishMessage').value.trim();
+
+    // WhatsApp Number (Aapne jo diya hai: 7417055731 - Country code 91 ke sath)
+    const phoneNumber = "917417055731";
+
+    // Format banana message ka
+    let fullText = `💍 *New Wedding Wish & RSVP* 💍\n\n` +
+                   `👤 *Name:* ${name}\n` +
+                   (relation ? `🌿 *Relation/Family:* ${relation}\n` : '') +
+                   `👥 *Family Members Attending:* ${attendees}\n` +
+                   `💬 *Blessing Message:* "${message}"`;
+
+    // URL encode karna taaki spaces aur special characters sahi se pass ho sakein
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(fullText)}`;
+
+    // Same-tab navigation avoids popup blockers and lets WhatsApp open the chat.
+    window.location.href = whatsappUrl;
+}
+</script>
+       
+        <section id="weddingPhotoFinale" class="wedding-photo-finale" aria-labelledby="weddingPhotoHeading">
+            <div class="wedding-photo-finale-inner">
+                <header class="wedding-photo-heading">
+                    <p class="text-xs uppercase tracking-[0.3em] text-yellow-300/80">A lifetime of little moments</p>
+                    <h2 id="weddingPhotoHeading">Our Forever, In Pictures</h2>
+                    <p>Har tasveer mein ek kahani, aur har kahani mein hum dono. ❤️</p>
+                </header>
+
+                <div class="wedding-forever-live" aria-label="Animated forever message">
+                    <div class="wedding-forever-orbit" aria-hidden="true">
+                        <span class="orbit-dot" style="top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(0deg);"></span>
+                        <span class="orbit-dot" style="top: 20%; left: 50%; transform: translate(-50%, -50%) rotate(90deg);"></span>
+                        <span class="orbit-dot" style="top: 50%; left: 80%; transform: translate(-50%, -50%) rotate(180deg);"></span>
+                        <span class="orbit-dot" style="top: 80%; left: 50%; transform: translate(-50%, -50%) rotate(270deg);"></span>
+                        <span class="orbit-dot" style="top: 50%; left: 20%; transform: translate(-50%, -50%) rotate(360deg);"></span>
+                        <div class="wedding-forever-core"><span>❤</span></div>
+                    </div>
+                    <div class="wedding-forever-copy">
+                        <p class="eyebrow">A promise for forever</p>
+                        <h3>From this day onward</h3>
+                        <p>Har subah, har muskaan aur har khushi ka ek naya safar. Hum dono ka yeh dil bas ek hi dua mein hai: hamesha saath rahein, hamesha pyaar mein rahen.</p>
+                    </div>
+                </div>
+
+                <div class="wedding-photo-grid">
+                    <figure class="wedding-photo-card wedding-photo-card-feature">
+                        <img src="Sunset Beach Couple Selfie.png" alt="Rahul and Aradhya together in their wedding portrait" loading="lazy" decoding="async">
+                        <figcaption>Rahul &amp; Aradhya · The beginning of forever</figcaption>
+                    </figure>
+                    <figure class="wedding-photo-card">
+                        <img src="real-estate-couple.png" alt="Rahul and Aradhya enjoying a quiet moment together in the mountains" loading="lazy" decoding="async">
+                        <figcaption>Side by side, wherever life takes us</figcaption>
+                    </figure>
+                    <figure class="wedding-photo-card">
+                        <img src="Our First Hello.png" alt="Rahul and Aradhya sharing a happy everyday memory" loading="lazy" decoding="async">
+                        <figcaption>Simple moments, sweetest memories</figcaption>
+                    </figure>
+                    <figure class="wedding-photo-card">
+                        <img src="rahul-aradhya-selfie.png" alt="Rahul and Aradhya smiling together in a selfie" loading="lazy" decoding="async">
+                        <figcaption>A happy moment, side by side</figcaption>
+                    </figure>
+                    <figure class="wedding-photo-card wedding-photo-card-family">
+                        <img src="Traditional Punjabi Couple Portrait.png" alt="Rahul and Aradhya seated together with family at a celebration" loading="lazy" decoding="async">
+                        <figcaption>Surrounded by family, sharing a joyful moment</figcaption>
+                    </figure>
+                    <figure class="wedding-photo-card wedding-photo-card-ceremony">
+                        <img src="Traditional Punjabi Couple Portrait.png" alt="Rahul and Aradhya seated together beneath their decorated wedding name sign" loading="lazy" decoding="async">
+                        <figcaption>A beautiful moment, surrounded by love<br><span class="text-base text-pink-100/80">Rahul &amp; Aradhya · A memory to treasure</span></figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <footer class="wedding-live-footer py-6 border-t border-pink-500/20 text-center glass-card">
+    <canvas class="wedding-footer-particles" aria-hidden="true"></canvas>
+    <p class="font-script text-4xl text-pink-300 mb-2">Aradhya & Rahul</p>
+    <p class="text-xs tracking-widest text-pink-300/60 uppercase whitespace-nowrap mb-2">#AradhyaWedsRahul ❤️ • 2026</p>
+
+    <div class="mb-5">
+        <a id="venueLocationLink" href="https://www.google.com/maps/place/B.R+Resort/@28.3823736,78.6058336,16z/data=!4m15!1m8!3m7!1s0x390b2700450023c9:0x808b9d7bf3b8aa44!2sB.R+Resort!8m2!3d28.3816777!4d78.6054663!10e5!16s%2Fg%2F11xv4qj4fv!3m5!1s0x390b2700450023c9:0x808b9d7bf3b8aa44!8m2!3d28.3816777!4d78.6054663!16s%2Fg%2F11xv4qj4fv?entry=ttu&g_ep=EgoyMDI2MTAyOC4wIKXMDSoASAFQAw%3D%3D&amp;g_ep=EgoyMDI2MTAyNy4wIKXMDSoASAFQAw%3D%3D"
+           target="_blank"
+           rel="noopener noreferrer"
+           onclick="openVenueDirections(event)"
+           class="inline-flex items-center gap-2 px-3 py-1.5 text-pink-200/75 hover:text-pink-100 text-xs rounded-full border border-pink-300/15 hover:border-pink-300/35 bg-pink-950/15 hover:bg-pink-950/30 transition-all duration-300">
+            <span aria-hidden="true">📍</span>
+            <span>B.R. Resort · Live distance & directions</span>
+        </a>
+        <p id="venueDistanceStatus" class="mt-2 text-xs text-pink-200/70" role="status" aria-live="polite"></p>
+    </div>
+
+   
+</footer>
+
+<script>
+function openVenueDirections(event) {
+    const status = document.getElementById("venueDistanceStatus");
+    const destination = { latitude: 28.3816777, longitude: 78.6054663 };
+
+    if (!window.isSecureContext || !navigator.geolocation) {
+        status.textContent = "B.R. Resort map khul raha hai. Live location ke liye site ko HTTPS/localhost par kholkar browser location permission allow karein.";
+        return;
+    }
+
+    status.textContent = "Aapki location ke liye browser permission ka intezar hai...";
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            const radians = (degrees) => degrees * Math.PI / 180;
+            const latitudeDifference = radians(destination.latitude - position.coords.latitude);
+            const longitudeDifference = radians(destination.longitude - position.coords.longitude);
+            const startLatitude = radians(position.coords.latitude);
+            const endLatitude = radians(destination.latitude);
+            const haversine = Math.sin(latitudeDifference / 2) ** 2 +
+                Math.cos(startLatitude) * Math.cos(endLatitude) *
+                Math.sin(longitudeDifference / 2) ** 2;
+            const distanceKm = 6371 * 2 * Math.atan2(Math.sqrt(haversine), Math.sqrt(1 - haversine));
+            const distanceText = distanceKm < 1
+                ? `${Math.round(distanceKm * 1000)} m`
+                : `${distanceKm.toFixed(1)} km`;
+            const origin = `${position.coords.latitude},${position.coords.longitude}`;
+            const directionsUrl = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${destination.latitude},${destination.longitude}`;
+
+            status.textContent = `Aap B.R. Resort se lagbhag ${distanceText} door hain (seedhi doori). `;
+            const directionsLink = document.createElement("a");
+            directionsLink.href = directionsUrl;
+            directionsLink.target = "_blank";
+            directionsLink.rel = "noopener noreferrer";
+            directionsLink.className = "text-pink-200 underline underline-offset-2 hover:text-pink-100";
+            directionsLink.textContent = "Route dekhein";
+            status.appendChild(directionsLink);
+        },
+        (error) => {
+            if (error.code === error.PERMISSION_DENIED) {
+                status.textContent = "B.R. Resort map khul raha hai. Live distance ke liye address bar ke lock/site settings se Location allow karke phir click karein.";
+            } else if (error.code === error.POSITION_UNAVAILABLE) {
+                status.textContent = "B.R. Resort map khul raha hai. Current location nahi mili—device ka GPS/location on karke phir try karein.";
+            } else {
+                status.textContent = "B.R. Resort map khul raha hai. Location lene mein timeout hua—GPS on karke phir try karein.";
+            }
+        },
+        { enableHighAccuracy: true, timeout: 30000, maximumAge: 60000 }
+    );
+}
+</script>
+
+        <!-- Lightbox Modal -->
+        <div id="lightbox" class="fixed inset-0 z-50 bg-black/90 hidden flex items-center justify-center p-4" onclick="closeLightbox()">
+            <img id="lightboxImg" src="" class="max-w-full max-h-[90vh] rounded-2xl shadow-2xl border border-pink-500/30">
+        </div>
+
+        <button id="backToTop" type="button" aria-label="Scroll to top" title="Back to top" onclick="scrollToTop()" class="back-to-top fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full flex items-center justify-center text-white border border-gold/60 bg-gradient-to-br from-magenta-bright to-magenta-dark shadow-[0_0_22px_rgba(224,17,95,0.55)] hover:shadow-[0_0_30px_rgba(224,17,95,0.8)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold">
+            <i class="fas fa-arrow-up" aria-hidden="true"></i>
+        </button>
+    </main>
+
+    
+    <script>
+        // Intro Config Data
+        const WEDDING_CONFIG = {
+            brideName: "ARADHYA",
+            groomName: "RAHUL",
+            tagline: "THE WEDDING CELEBRATION OF",
+            quote: '"Two hearts, two souls, one extraordinary journey of love."',
+            date: "NOVEMBER 24, 2026",
+            city: "BR RESORT,(BEHJOI),BABRALA CHANDAUSI, U.P., INDIA",
+        };
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("brideName").innerText = WEDDING_CONFIG.brideName;
+            document.getElementById("groomName").innerText = WEDDING_CONFIG.groomName;
+            document.getElementById("introTagline").innerText = WEDDING_CONFIG.tagline;
+            document.getElementById("weddingQuote").innerText = WEDDING_CONFIG.quote;
+            document.getElementById("weddingDateText").innerText = WEDDING_CONFIG.date;
+            document.getElementById("weddingCityText").innerText = WEDDING_CONFIG.city;
+
+        });
+
+        // --- Enter Main Website Controller ---
+        function enterMainWebsite() {
+            const introContainer = document.getElementById("videoIntroContainer");
+            const mainWebsite = document.getElementById("yourExistingWebsite");
+            startWeddingMusic();
+
+            introContainer.style.opacity = "0";
+
+            setTimeout(() => {
+                introContainer.style.display = "none";
+                document.body.classList.remove("overflow-hidden");
+                document.body.classList.add("overflow-y-auto");
+                mainWebsite.style.opacity = "1";
+                stopIntroAnimation();
+                startMainBgAnimation();
+                updateMemoryAnimationActivity();
+                updateWeddingDecorations();
+                initializeScrollAnimations();
+                window.scrollTo(0, 0);
+                updateWeddingDecorations();
+                weddingMusic.currentTime = 0;
+                updateWeddingMusicVolume();
+            }, 1000);
+        }
+
+        const weddingMusic = document.getElementById("weddingMusic");
+        if (typeof window.WEDDING_SONG_DATA !== "string") {
+            throw new Error("Unable to load the wedding song audio data.");
+        }
+        weddingMusic.src = window.WEDDING_SONG_DATA;
+
+        const WEDDING_MUSIC_MAX_VOLUME = 0.5;
+        let weddingMusicStarted = false;
+        let weddingMusicFinished = false;
+        let weddingMusicTargetVolume = 0;
+        let weddingMusicFadeFrame = null;
+
+        function animateWeddingMusicVolume() {
+            const difference = weddingMusicTargetVolume - weddingMusic.volume;
+            if (Math.abs(difference) < 0.004) {
+                weddingMusic.volume = weddingMusicTargetVolume;
+                weddingMusicFadeFrame = null;
+                if (weddingMusicTargetVolume === 0) {
+                    weddingMusic.pause();
+                }
+                return;
+            }
+
+            weddingMusic.volume += difference * 0.08;
+            weddingMusicFadeFrame = requestAnimationFrame(animateWeddingMusicVolume);
+        }
+
+        function updateWeddingMusicVolume() {
+            if (!weddingMusicStarted || weddingMusicFinished) {
+                return;
+            }
+
+            const hero = document.querySelector(".hero-banner");
+            const heroHeight = hero ? hero.offsetHeight : window.innerHeight;
+            const fadeDistance = Math.max(heroHeight * 0.65, window.innerHeight * 0.75);
+            const scrollProgress = Math.min(1, Math.max(0, window.scrollY / Math.max(fadeDistance, 1)));
+
+            weddingMusicTargetVolume = WEDDING_MUSIC_MAX_VOLUME * (1 - scrollProgress);
+            if (weddingMusicTargetVolume > 0) {
+                resumeWeddingMusic();
+            }
+            if (weddingMusicFadeFrame === null) {
+                weddingMusicFadeFrame = requestAnimationFrame(animateWeddingMusicVolume);
+            }
+        }
+
+        let weddingMusicResumePending = false;
+
+        function resumeWeddingMusic() {
+            if (!weddingMusicStarted || weddingMusicFinished || !weddingMusic.paused || weddingMusicResumePending) {
+                return;
+            }
+
+            weddingMusicResumePending = true;
+            weddingMusic.play().catch((error) => {
+                console.error("Unable to resume the wedding song:", error);
+            }).finally(() => {
+                weddingMusicResumePending = false;
+            });
+        }
+
+        function startWeddingMusic() {
+            if (weddingMusicStarted && !weddingMusicFinished) {
+                return;
+            }
+
+            weddingMusicStarted = true;
+            weddingMusicFinished = false;
+            weddingMusicResumePending = false;
+            weddingMusic.volume = 0;
+            weddingMusicTargetVolume = 0;
+            weddingMusic.play().catch((error) => {
+                weddingMusicStarted = false;
+                if (weddingMusicFadeFrame !== null) {
+                    cancelAnimationFrame(weddingMusicFadeFrame);
+                    weddingMusicFadeFrame = null;
+                }
+                console.error("Unable to play the wedding song:", error);
+            });
+        }
+
+        function resetWeddingMusic() {
+            weddingMusic.pause();
+            weddingMusic.currentTime = 0;
+            weddingMusic.volume = 0;
+            weddingMusicStarted = false;
+            weddingMusicFinished = false;
+            weddingMusicResumePending = false;
+            weddingMusicTargetVolume = 0;
+            if (weddingMusicFadeFrame !== null) {
+                cancelAnimationFrame(weddingMusicFadeFrame);
+                weddingMusicFadeFrame = null;
+            }
+        }
+
+        weddingMusic.addEventListener("ended", () => {
+            weddingMusicFinished = true;
+            weddingMusicTargetVolume = 0;
+        });
+
+        window.addEventListener("scroll", updateWeddingMusicVolume, { passive: true });
+
+        function restartVideoIntro() {
+            const introContainer = document.getElementById("videoIntroContainer");
+            const mainWebsite = document.getElementById("yourExistingWebsite");
+
+            resetWeddingMusic();
+            stopMainBgAnimation();
+            stopMemoryAnimation();
+            document.getElementById("weddingGiftDecor").classList.remove("is-visible");
+            mainWebsite.style.opacity = "0";
+            introContainer.style.display = "flex";
+            document.body.classList.remove("overflow-y-auto");
+            document.body.classList.add("overflow-hidden");
+
+            setTimeout(() => {
+                introContainer.style.opacity = "1";
+                startIntroAnimation();
+            }, 50);
+        }
+
+        // --- Intro Live Video Canvas Engine ---
+        const videoCanvas = document.getElementById("liveVideoCanvas");
+        const videoCtx = videoCanvas.getContext("2d");
+        const isMobileViewport = window.matchMedia("(max-width: 768px)").matches || navigator.maxTouchPoints > 0;
+        let vWidth, vHeight;
+
+        function resizeVideoCanvas() {
+            vWidth = videoCanvas.width = window.innerWidth;
+            vHeight = videoCanvas.height = window.innerHeight;
+        }
+
+        function handleGlobalResize() {
+            resizeVideoCanvas();
+            resizeMemoryCanvas();
+            updateMemoryAnimationActivity();
+            updateWeddingDecorations();
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        window.addEventListener("resize", handleGlobalResize);
+        resizeVideoCanvas();
+
+        const bokehElements = [];
+        const TOTAL_BOKEH = isMobileViewport ? 18 : 45;
+        let introAnimationFrame = null;
+        let introAnimationActive = true;
+
+        class BokehLight {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * vWidth;
+                this.y = Math.random() * vHeight;
+                this.radius = Math.random() * 45 + 15;
+                this.speedY = -(Math.random() * 0.4 + 0.1);
+                this.speedX = Math.random() * 0.3 - 0.15;
+                this.opacity = Math.random() * 0.4 + 0.1;
+                this.pulseSpeed = Math.random() * 0.02 + 0.005;
+                this.pulseFactor = Math.random() * Math.PI;
+
+                const colors = [
+                    { r: 224, g: 17,  b: 95 },
+                    { r: 255, g: 42,  b: 117 },
+                    { r: 212, g: 175, b: 55 },
+                    { r: 255, g: 245, b: 208 }
+                ];
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+            }
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                this.pulseFactor += this.pulseSpeed;
+                if (this.y < -60 || this.x < -60 || this.x > vWidth + 60) {
+                    this.reset();
+                    this.y = vHeight + 50;
+                }
+            }
+            draw() {
+                videoCtx.save();
+                const currentOpacity = this.opacity + Math.sin(this.pulseFactor) * 0.15;
+                const grad = videoCtx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
+                grad.addColorStop(0, `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${Math.max(0, currentOpacity)})`);
+                grad.addColorStop(0.6, `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${Math.max(0, currentOpacity * 0.4)})`);
+                grad.addColorStop(1, `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, 0)`);
+                videoCtx.fillStyle = grad;
+                videoCtx.beginPath();
+                videoCtx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                videoCtx.fill();
+                videoCtx.restore();
+            }
+        }
+
+        let rayAngle = 0;
+        function drawCinematicLightRays() {
+            videoCtx.save();
+            rayAngle += 0.002;
+            const centerX = vWidth * 0.5 + Math.sin(rayAngle) * 100;
+            const centerY = -100;
+
+            for (let i = 0; i < 6; i++) {
+                const angle = (i * Math.PI / 4) + Math.sin(rayAngle * 0.5) * 0.1;
+                const rayGrad = videoCtx.createLinearGradient(centerX, centerY, centerX + Math.cos(angle) * vWidth, centerY + Math.sin(angle) * vHeight);
+                rayGrad.addColorStop(0, "rgba(255, 42, 117, 0.07)");
+                rayGrad.addColorStop(0.5, "rgba(212, 175, 55, 0.04)");
+                rayGrad.addColorStop(0.8, "rgba(224, 17, 95, 0.01)");
+                rayGrad.addColorStop(1, "transparent");
+
+                videoCtx.fillStyle = rayGrad;
+                videoCtx.beginPath();
+                videoCtx.moveTo(centerX, centerY);
+                videoCtx.lineTo(centerX + Math.cos(angle - 0.2) * vWidth * 1.5, centerY + Math.sin(angle - 0.2) * vHeight * 1.5);
+                videoCtx.lineTo(centerX + Math.cos(angle + 0.2) * vWidth * 1.5, centerY + Math.sin(angle + 0.2) * vHeight * 1.5);
+                videoCtx.closePath();
+                videoCtx.fill();
+            }
+            videoCtx.restore();
+        }
+
+        for (let i = 0; i < TOTAL_BOKEH; i++) {
+            bokehElements.push(new BokehLight());
+        }
+
+        function renderLiveVideoFrame() {
+            introAnimationFrame = null;
+            if (!introAnimationActive || document.hidden) {
+                return;
+            }
+
+            const bgGradient = videoCtx.createLinearGradient(0, 0, 0, vHeight);
+            bgGradient.addColorStop(0, "#120207");
+            bgGradient.addColorStop(0.5, "#23050F");
+            bgGradient.addColorStop(1, "#0D0105");
+            videoCtx.fillStyle = bgGradient;
+            videoCtx.fillRect(0, 0, vWidth, vHeight);
+
+            drawCinematicLightRays();
+            bokehElements.forEach(light => {
+                light.update();
+                light.draw();
+            });
+
+            introAnimationFrame = requestAnimationFrame(renderLiveVideoFrame);
+        }
+
+        function startIntroAnimation() {
+            introAnimationActive = true;
+            if (isMobileViewport) {
+                return;
+            }
+            if (!document.hidden && introAnimationFrame === null) {
+                introAnimationFrame = requestAnimationFrame(renderLiveVideoFrame);
+            }
+        }
+
+        function stopIntroAnimation() {
+            introAnimationActive = false;
+            if (introAnimationFrame !== null) {
+                cancelAnimationFrame(introAnimationFrame);
+                introAnimationFrame = null;
+            }
+        }
+
+        startIntroAnimation();
+
+        // --- Main Website Three.js Falling Petals Engine ---
+        const canvas = document.getElementById('webgl-bg');
+        if (isMobileViewport) {
+            canvas.style.display = 'none';
+        }
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+        
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobileViewport ? 1.1 : 1.5));
+        renderer.setClearColor(0x000000, 0);
+
+        const ambientLight = new THREE.AmbientLight(0xffb6c1, 1.8);
+        scene.add(ambientLight);
+
+        const mouseLight = new THREE.PointLight(0xff1493, 4, 36);
+        scene.add(mouseLight);
+        const goldLight = new THREE.PointLight(0xe5c158, 1.5, 28);
+        goldLight.position.set(-7, 5, -2);
+        scene.add(goldLight);
+
+        window.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth) * 2 - 1;
+            const y = -(e.clientY / window.innerHeight) * 2 + 1;
+            mouseLight.position.set(x * 10, y * 10, 3);
+        });
+
+        const elementsGroup = new THREE.Group();
+        scene.add(elementsGroup);
+
+        const petalCount = isMobileViewport ? 12 : (window.innerWidth < 640 ? 20 : 42);
+        const petals = [];
+        const petalShape = new THREE.Shape();
+        petalShape.moveTo(0, 0);
+        petalShape.bezierCurveTo(0.3, 0.4, 0.5, 0.7, 0.2, 1.1);
+        petalShape.bezierCurveTo(0, 1.4, -0.2, 1.4, -0.2, 1.1);
+        petalShape.bezierCurveTo(-0.5, 0.7, -0.3, 0.4, 0, 0);
+
+        const petalGeometry = new THREE.ShapeGeometry(petalShape);
+        const petalMaterial = new THREE.MeshStandardMaterial({
+            color: 0xe9bfd0,
+            emissive: 0x170711,
+            emissiveIntensity: 0.12,
+            roughness: 0.55,
+            metalness: 0.05,
+            transparent: true,
+            opacity: 0.35,
+            depthWrite: false,
+            side: THREE.DoubleSide
+        });
+
+        for (let i = 0; i < petalCount; i++) {
+            const mesh = new THREE.Mesh(petalGeometry, petalMaterial);
+            const scale = 0.07 + Math.random() * 0.1;
+            mesh.scale.set(scale, scale, scale);
+            mesh.position.set(
+                (Math.random() - 0.5) * 20,
+                Math.random() * 20 - 10,
+                (Math.random() - 0.5) * 12
+            );
+            mesh.rotation.set(
+                Math.random() * Math.PI,
+                Math.random() * Math.PI,
+                Math.random() * Math.PI
+            );
+            mesh.userData = {
+                fallSpeed: 0.015 + Math.random() * 0.025,
+                rotX: (Math.random() - 0.5) * 0.02,
+                rotY: (Math.random() - 0.5) * 0.02,
+                sway: 0.006 + Math.random() * 0.012,
+                resetX: 10
+            };
+            elementsGroup.add(mesh);
+            petals.push(mesh);
+        }
+
+        const heartShape = new THREE.Shape();
+        const x = 0, y = 0;
+        heartShape.moveTo(x + 0.25, y + 0.25);
+        heartShape.bezierCurveTo(x + 0.25, y + 0.25, x + 0.2, y, x, y);
+        heartShape.bezierCurveTo(x - 0.3, y, x - 0.3, y + 0.35, x - 0.3, y + 0.35);
+        heartShape.bezierCurveTo(x - 0.3, y + 0.55, x - 0.1, y + 0.77, x + 0.25, y + 1);
+        heartShape.bezierCurveTo(x + 0.6, y + 0.77, x + 0.8, y + 0.55, x + 0.8, y + 0.35);
+        heartShape.bezierCurveTo(x + 0.8, y + 0.35, x + 0.8, y, x + 0.5, y);
+        heartShape.bezierCurveTo(x + 0.35, y, x + 0.25, y + 0.25, x + 0.25, y + 0.25);
+
+        const heartExtrudeSettings = { depth: 0.08, bevelEnabled: true, bevelSegments: 2, steps: 1, bevelSize: 0.02, bevelThickness: 0.02 };
+        const heartGeometry = new THREE.ExtrudeGeometry(heartShape, heartExtrudeSettings);
+        const heartMaterial = new THREE.MeshStandardMaterial({
+            color: 0xe5c7d4,
+            emissive: 0x220d1a,
+            emissiveIntensity: 0.16,
+            transparent: true,
+            opacity: 0.28,
+            roughness: 0.2,
+            metalness: 0.3
+        });
+
+        const hearts = [];
+        for(let h = 0; h < 15; h++) {
+            const heartMesh = new THREE.Mesh(heartGeometry, heartMaterial);
+            const heartScale = 0.08 + Math.random() * 0.06;
+            heartMesh.scale.set(heartScale, heartScale, heartScale);
+            heartMesh.position.set((Math.random() - 0.5) * 18, (Math.random() - 0.5) * 16, (Math.random() - 0.5) * 8);
+            heartMesh.userData = { riseSpeed: 0.01 + Math.random() * 0.015, floatRot: (Math.random() - 0.5) * 0.03 };
+            scene.add(heartMesh);
+            hearts.push(heartMesh);
+        }
+
+        const dustGeometry = new THREE.BufferGeometry();
+        const dustCount = isMobileViewport ? 50 : (window.innerWidth < 640 ? 90 : 200);
+        const posArray = new Float32Array(dustCount * 3);
+        for(let i=0; i<dustCount*3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 25;
+        }
+        dustGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        const dustMaterial = new THREE.PointsMaterial({ size: 0.045, color: 0xffd5e8, transparent: true, opacity: 0.52 });
+        const dustMesh = new THREE.Points(dustGeometry, dustMaterial);
+        scene.add(dustMesh);
+
+        camera.position.z = 12;
+
+        let clock = new THREE.Clock();
+        let mainBgAnimationFrame = null;
+        let mainBgAnimationActive = false;
+        const reduceBackgroundMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches || isMobileViewport;
+        function animateMainBg() {
+            mainBgAnimationFrame = null;
+            if (!mainBgAnimationActive || document.hidden) {
+                return;
+            }
+
+            const elapsedTime = clock.getElapsedTime();
+
+            petals.forEach(p => {
+                p.position.y -= p.userData.fallSpeed;
+                p.position.x += Math.sin(elapsedTime + p.position.y) * p.userData.sway;
+                p.rotation.x += p.userData.rotX;
+                p.rotation.y += p.userData.rotY;
+
+                if (p.position.y < -10) {
+                    p.position.y = 10;
+                    p.position.x = (Math.random() - 0.5) * p.userData.resetX * 2;
+                }
+            });
+
+            hearts.forEach(h => {
+                h.position.y += h.userData.riseSpeed;
+                h.rotation.y += h.userData.floatRot;
+                if(h.position.y > 8) {
+                    h.position.y = -8;
+                    h.position.x = (Math.random() - 0.5) * 18;
+                }
+            });
+
+            dustMesh.rotation.y = elapsedTime * 0.02;
+            renderer.render(scene, camera);
+            mainBgAnimationFrame = requestAnimationFrame(animateMainBg);
+        }
+
+        function startMainBgAnimation() {
+            mainBgAnimationActive = true;
+            if (reduceBackgroundMotion || isMobileViewport) {
+                renderer.render(scene, camera);
+                return;
+            }
+            if (!document.hidden && mainBgAnimationFrame === null) {
+                clock.start();
+                mainBgAnimationFrame = requestAnimationFrame(animateMainBg);
+            }
+        }
+
+        function stopMainBgAnimation() {
+            mainBgAnimationActive = false;
+            if (mainBgAnimationFrame !== null) {
+                cancelAnimationFrame(mainBgAnimationFrame);
+                mainBgAnimationFrame = null;
+            }
+        }
+
+        const memoryCanvas = document.getElementById("memory-particles-bg");
+        if (isMobileViewport) {
+            memoryCanvas.style.display = 'none';
+        }
+        const memoryContext = memoryCanvas.getContext("2d", { alpha: true });
+        if (!memoryContext) {
+            throw new Error("Unable to initialize the sweet-memory animation canvas.");
+        }
+
+        const memoryParticleCount = isMobileViewport ? 800 : (window.innerWidth < 640 ? 1600 : window.innerWidth < 1200 ? 3000 : 4200);
+        const memoryParticleColors = ["#ffe2c0", "#f7d8e6", "#fff1d6", "#eac9df"];
+        const memorySprites = memoryParticleColors.map((color) => {
+                const sprite = document.createElement("canvas");
+                sprite.width = 32;
+                sprite.height = 32;
+                const spriteContext = sprite.getContext("2d");
+                if (!spriteContext) {
+                    throw new Error("Unable to create a sweet-memory particle sprite.");
+                }
+
+                const glow = spriteContext.createRadialGradient(16, 16, 0, 16, 16, 14);
+                glow.addColorStop(0, color);
+                glow.addColorStop(0.18, `${color}aa`);
+                glow.addColorStop(1, `${color}00`);
+                spriteContext.fillStyle = glow;
+                spriteContext.beginPath();
+                spriteContext.arc(16, 16, 14, 0, Math.PI * 2);
+                spriteContext.fill();
+
+                return sprite;
+            });
+
+        const memoryParticles = Array.from({ length: memoryParticleCount }, () => ({
+            x: Math.random() * window.innerWidth,
+            y: Math.random() * window.innerHeight,
+            size: 1.5 + Math.random() * 2.5,
+            speed: 2 + Math.random() * 6,
+            drift: 1 + Math.random() * 5,
+            phase: Math.random() * Math.PI * 2,
+            twinkle: Math.random() * 0.32 + 0.08,
+            spriteColor: Math.floor(Math.random() * memoryParticleColors.length)
+        }));
+
+        let memoryAnimationFrame = null;
+        let memoryAnimationActive = false;
+        let memoryLastFrameTime = 0;
+        let memoryPixelRatio = 1;
+        let memoryCanvasInitialized = false;
+
+        function resizeMemoryCanvas() {
+            const previousWidth = memoryCanvas.width / memoryPixelRatio;
+            const previousHeight = memoryCanvas.height / memoryPixelRatio;
+            memoryPixelRatio = Math.min(window.devicePixelRatio || 1, 1.25);
+            memoryCanvas.width = Math.round(window.innerWidth * memoryPixelRatio);
+            memoryCanvas.height = Math.round(window.innerHeight * memoryPixelRatio);
+            memoryContext.setTransform(memoryPixelRatio, 0, 0, memoryPixelRatio, 0, 0);
+
+            if (memoryCanvasInitialized && previousWidth > 0 && previousHeight > 0) {
+                const widthScale = window.innerWidth / previousWidth;
+                const heightScale = window.innerHeight / previousHeight;
+                memoryParticles.forEach((particle) => {
+                    particle.x *= widthScale;
+                    particle.y *= heightScale;
+                });
+            }
+            memoryCanvasInitialized = true;
+        }
+
+        function renderMemoryParticles(timestamp = 0) {
+            memoryAnimationFrame = null;
+            if (!memoryAnimationActive || document.hidden) {
+                return;
+            }
+            if (!reduceBackgroundMotion && timestamp - memoryLastFrameTime < 1000 / 30) {
+                memoryAnimationFrame = requestAnimationFrame(renderMemoryParticles);
+                return;
+            }
+
+            const frameDelta = memoryLastFrameTime === 0
+                ? 0
+                : Math.min((timestamp - memoryLastFrameTime) / 1000, 0.05);
+            memoryLastFrameTime = timestamp;
+            memoryContext.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+            memoryParticles.forEach((particle) => {
+                if (!reduceBackgroundMotion) {
+                    particle.y += particle.speed * frameDelta;
+                    particle.x += Math.sin(timestamp * 0.00035 + particle.phase) * particle.drift * frameDelta;
+                    if (particle.y > window.innerHeight + 12) {
+                        particle.y = -12;
+                        particle.x = Math.random() * window.innerWidth;
+                    }
+                    if (particle.x < -12) particle.x = window.innerWidth + 12;
+                    if (particle.x > window.innerWidth + 12) particle.x = -12;
+                }
+
+                const twinkle = reduceBackgroundMotion
+                    ? particle.twinkle
+                    : particle.twinkle * (0.55 + Math.sin(timestamp * 0.0015 + particle.phase) * 0.35);
+                memoryContext.globalAlpha = twinkle;
+                const sprite = memorySprites[particle.spriteColor];
+                memoryContext.drawImage(
+                    sprite,
+                    particle.x - particle.size,
+                    particle.y - particle.size,
+                    particle.size,
+                    particle.size
+                );
+            });
+
+            memoryContext.globalAlpha = 1;
+            if (!reduceBackgroundMotion) {
+                memoryAnimationFrame = requestAnimationFrame(renderMemoryParticles);
+            }
+        }
+
+        function updateMemoryAnimationActivity() {
+            const introIsHidden = document.getElementById("videoIntroContainer").style.display === "none";
+            const countdownSection = document.getElementById("countdown");
+            const countdownHasEnteredView = window.scrollY + window.innerHeight >
+                countdownSection.getBoundingClientRect().top + window.scrollY;
+            const shouldRun = introIsHidden && countdownHasEnteredView && !document.hidden;
+
+            memoryCanvas.style.visibility = shouldRun ? "visible" : "hidden";
+            if (shouldRun && !memoryAnimationActive) {
+                memoryAnimationActive = true;
+                memoryLastFrameTime = 0;
+                renderMemoryParticles();
+            } else if (!shouldRun && memoryAnimationActive) {
+                stopMemoryAnimation();
+            }
+        }
+
+        function updateWeddingDecorations() {
+            const introIsHidden = document.getElementById("videoIntroContainer").style.display === "none";
+            const heroSection = document.querySelector(".hero-banner");
+            const finaleSection = document.getElementById("weddingPhotoFinale");
+            const lightboxIsOpen = !document.getElementById("lightbox").classList.contains("hidden");
+            const finaleBounds = finaleSection.getBoundingClientRect();
+            const finaleIsVisible = finaleBounds.top < window.innerHeight && finaleBounds.bottom > 0;
+            const hasPassedHero = window.scrollY > heroSection.offsetHeight * 0.55;
+
+            document.getElementById("weddingGiftDecor").classList.toggle(
+                "is-visible",
+                introIsHidden && hasPassedHero && !finaleIsVisible && !lightboxIsOpen && !document.hidden
+            );
+        }
+
+        function stopMemoryAnimation() {
+            memoryAnimationActive = false;
+            memoryLastFrameTime = 0;
+            if (memoryAnimationFrame !== null) {
+                cancelAnimationFrame(memoryAnimationFrame);
+                memoryAnimationFrame = null;
+            }
+            memoryCanvas.style.visibility = "hidden";
+        }
+
+        resizeMemoryCanvas();
+        window.addEventListener("scroll", updateMemoryAnimationActivity, { passive: true });
+        window.addEventListener("scroll", updateWeddingDecorations, { passive: true });
+
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) {
+                stopIntroAnimation();
+                stopMainBgAnimation();
+                stopMemoryAnimation();
+                document.getElementById("weddingGiftDecor").classList.remove("is-visible");
+            } else if (document.getElementById("videoIntroContainer").style.display === "none") {
+                startMainBgAnimation();
+                updateMemoryAnimationActivity();
+                updateWeddingDecorations();
+            } else {
+                startIntroAnimation();
+            }
+        });
+
+        // --- Main Site Interactive Features ---
+        function openLightbox(url) {
+            document.getElementById("lightboxImg").src = url;
+            document.getElementById("lightbox").classList.remove("hidden");
+            updateWeddingDecorations();
+        }
+        function closeLightbox() {
+            document.getElementById("lightbox").classList.add("hidden");
+            updateWeddingDecorations();
+        }
+
+        function scrollToTop() {
+            const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+            window.scrollTo({ top: 0, behavior });
+        }
+
+        const backToTopButton = document.getElementById("backToTop");
+        window.addEventListener("scroll", () => {
+            backToTopButton.classList.toggle("is-visible", window.scrollY > 420);
+        }, { passive: true });
+
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        let scrollAnimationObserver;
+        function initializeScrollAnimations() {
+            if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+                return;
+            }
+
+            if (scrollAnimationObserver) {
+                scrollAnimationObserver.disconnect();
+            }
+
+            const animatedElements = document.querySelectorAll(
+                "#yourExistingWebsite section > div:first-child, " +
+                "#yourExistingWebsite section .glass-card, " +
+                "#yourExistingWebsite section .wedding-invitation-experience, " +
+                "#yourExistingWebsite section .carousel-3d-stage, " +
+                "#yourExistingWebsite section #gallery > div.mx-auto, " +
+                "#weddingPhotoFinale .wedding-photo-heading, #weddingPhotoFinale .wedding-photo-card, " +
+                "#yourExistingWebsite footer, " +
+                "#wishes > div:first-child, #wishes .glass-card, body > footer"
+            );
+            const pendingFrames = new WeakMap();
+            const siblingRevealCounts = new Map();
+
+            animatedElements.forEach((element) => {
+                element.classList.remove("animated", "is-in-view", "fadeIn", "fadeInUp", "zoomIn");
+                element.classList.add("scroll-animated");
+                const parent = element.parentElement;
+                const siblingIndex = siblingRevealCounts.get(parent) || 0;
+                element.style.setProperty("--reveal-delay", `${Math.min(siblingIndex * 75, 300)}ms`);
+                siblingRevealCounts.set(parent, siblingIndex + 1);
+            });
+
+            scrollAnimationObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    const element = entry.target;
+                    if (entry.isIntersecting) {
+                        if (element.classList.contains("is-in-view")) {
+                            return;
+                        }
+                        element.classList.add("is-in-view");
+                        const pendingFrame = pendingFrames.get(element);
+                        if (pendingFrame) {
+                            cancelAnimationFrame(pendingFrame);
+                        }
+                        const frame = requestAnimationFrame(() => {
+                            pendingFrames.delete(element);
+                            if (element.classList.contains("is-in-view")) {
+                                element.classList.remove("animated", "fadeIn");
+                                void element.offsetWidth;
+                                element.classList.add("fadeIn", "animated");
+                            }
+                        });
+                        pendingFrames.set(element, frame);
+                    } else {
+                        const pendingFrame = pendingFrames.get(element);
+                        if (pendingFrame) {
+                            cancelAnimationFrame(pendingFrame);
+                            pendingFrames.delete(element);
+                        }
+                        element.classList.remove("animated", "is-in-view", "fadeIn", "fadeInUp", "zoomIn");
+                    }
+                });
+            }, { threshold: 0.05, rootMargin: "-8% 0px -8% 0px" });
+
+            animatedElements.forEach((element) => scrollAnimationObserver.observe(element));
+        }
+
+        function addWish(e) {
+            e.preventDefault();
+            const name = document.getElementById("wishName").value;
+            const msg = document.getElementById("wishMessage").value;
+            
+            const feed = document.getElementById("wishesFeed");
+            const wishCard = document.createElement("div");
+            wishCard.className = "glass-card p-6 rounded-2xl";
+            wishCard.innerHTML = `<p class="text-pink-200/90 italic">"${msg}"</p><span class="text-xs text-pink-400 font-semibold mt-3 block">— ${name}</span>`;
+            
+            feed.prepend(wishCard);
+            document.getElementById("wishForm").reset();
+        }
+
+        const foreverLive = document.querySelector(".wedding-forever-live");
+        if (foreverLive) {
+            const sparkSymbols = ["❤", "✦", "❋", "✧", "✺"]; 
+            for (let i = 0; i < 16; i += 1) {
+                const spark = document.createElement("span");
+                spark.className = "wedding-forever-spark";
+                spark.textContent = sparkSymbols[i % sparkSymbols.length];
+                const x = 12 + Math.random() * 76;
+                const y = 18 + Math.random() * 60;
+                const size = (Math.random() * 0.8 + 0.7).toFixed(2);
+                const duration = (Math.random() * 3 + 4.5).toFixed(2);
+                const delay = (Math.random() * 2.5).toFixed(2);
+                spark.style.left = `${x}%`;
+                spark.style.top = `${y}%`;
+                spark.style.fontSize = `${size}rem`;
+                spark.style.animationDuration = `${duration}s`;
+                spark.style.animationDelay = `${delay}s`;
+                foreverLive.appendChild(spark);
+            }
+        }
+
+        const liveFooter = document.querySelector(".wedding-live-footer");
+        const footerCanvas = liveFooter?.querySelector(".wedding-footer-particles");
+        if (liveFooter && footerCanvas) {
+            const footerContext = footerCanvas.getContext("2d", { alpha: true });
+            if (!footerContext) {
+                throw new Error("Unable to initialize the footer particle canvas.");
+            }
+
+            const footerReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            const footerParticles = Array.from({ length: 10001 }, () => ({
+                x: 0,
+                y: 0,
+                size: Math.random() * 0.8 + 0.25,
+                speed: Math.random() * 7 + 2,
+                drift: (Math.random() - 0.5) * 4,
+                alpha: Math.random() * 0.32 + 0.12,
+                alphaDirection: Math.random() < 0.5 ? -1 : 1,
+                alphaSpeed: Math.random() * 0.55 + 0.15
+            }));
+            let footerWidth = 0;
+            let footerHeight = 0;
+            let footerPixelRatio = 1;
+            let footerAnimationFrame = null;
+            let footerLastFrameTime = 0;
+            let footerIsVisible = false;
+
+            function resizeFooterCanvas() {
+                const bounds = liveFooter.getBoundingClientRect();
+                footerWidth = bounds.width;
+                footerHeight = bounds.height;
+                footerPixelRatio = Math.min(window.devicePixelRatio || 1, 1.25);
+                footerCanvas.width = Math.round(footerWidth * footerPixelRatio);
+                footerCanvas.height = Math.round(footerHeight * footerPixelRatio);
+                footerContext.setTransform(footerPixelRatio, 0, 0, footerPixelRatio, 0, 0);
+
+                footerParticles.forEach((particle) => {
+                    particle.x = Math.random() * footerWidth;
+                    particle.y = Math.random() * footerHeight;
+                });
+            }
+
+            function drawFooterParticles(timestamp = 0) {
+                footerAnimationFrame = null;
+                if (!footerIsVisible || document.hidden) {
+                    return;
+                }
+
+                if (!footerReducedMotion && timestamp - footerLastFrameTime < 1000 / 24) {
+                    footerAnimationFrame = requestAnimationFrame(drawFooterParticles);
+                    return;
+                }
+
+                const frameDelta = footerLastFrameTime === 0
+                    ? 0
+                    : Math.min((timestamp - footerLastFrameTime) / 1000, 0.05);
+                footerLastFrameTime = timestamp;
+                footerContext.clearRect(0, 0, footerWidth, footerHeight);
+                footerContext.fillStyle = "#ffe6ac";
+
+                footerParticles.forEach((particle) => {
+                    if (!footerReducedMotion) {
+                        particle.y += particle.speed * frameDelta;
+                        particle.x += particle.drift * frameDelta;
+                        particle.alpha += particle.alphaDirection * particle.alphaSpeed * frameDelta;
+                        if (particle.y > footerHeight) particle.y = 0;
+                        if (particle.x < 0) particle.x = footerWidth;
+                        if (particle.x > footerWidth) particle.x = 0;
+                        if (particle.alpha > 0.48 || particle.alpha < 0.08) {
+                            particle.alphaDirection *= -1;
+                        }
+                    }
+
+                    footerContext.globalAlpha = particle.alpha;
+                    footerContext.fillRect(particle.x, particle.y, particle.size, particle.size);
+                });
+
+                footerContext.globalAlpha = 1;
+                if (!footerReducedMotion) {
+                    footerAnimationFrame = requestAnimationFrame(drawFooterParticles);
+                }
+            }
+
+            function stopFooterParticles() {
+                if (footerAnimationFrame !== null) {
+                    cancelAnimationFrame(footerAnimationFrame);
+                    footerAnimationFrame = null;
+                }
+                footerLastFrameTime = 0;
+            }
+
+            function updateFooterParticlesVisibility(isVisible) {
+                footerIsVisible = isVisible;
+                if (!isVisible || document.hidden) {
+                    stopFooterParticles();
+                    return;
+                }
+                if (footerReducedMotion) {
+                    drawFooterParticles();
+                } else if (footerAnimationFrame === null) {
+                    footerAnimationFrame = requestAnimationFrame(drawFooterParticles);
+                }
+            }
+
+            resizeFooterCanvas();
+            if ("IntersectionObserver" in window) {
+                const footerParticleObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        updateFooterParticlesVisibility(entry.isIntersecting);
+                    });
+                });
+                footerParticleObserver.observe(liveFooter);
+            } else {
+                updateFooterParticlesVisibility(true);
+            }
+
+            window.addEventListener("resize", () => {
+                resizeFooterCanvas();
+                if (footerReducedMotion && footerIsVisible && !document.hidden) {
+                    drawFooterParticles();
+                }
+            });
+            document.addEventListener("visibilitychange", () => {
+                updateFooterParticlesVisibility(footerIsVisible);
+            });
+        }
+
+        function updateWeddingCountdown() {
+            const weddingDay = new Date("2026-11-24T00:00:00+05:30");
+            const remaining = weddingDay.getTime() - Date.now();
+            const timer = document.getElementById("countdownTimer");
+            const hasWeddingStarted = remaining <= 0;
+            const now = new Date();
+
+            document.getElementById("indiaLiveDate").textContent = new Intl.DateTimeFormat("en-IN", {
+                timeZone: "Asia/Kolkata",
+                weekday: "long",
+                day: "2-digit",
+                month: "long",
+                year: "numeric"
+            }).format(now);
+            document.getElementById("indiaLiveTime").textContent = new Intl.DateTimeFormat("en-IN", {
+                timeZone: "Asia/Kolkata",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+                hour12: true
+            }).format(now);
+            document.getElementById("topLiveDate").textContent = document.getElementById("indiaLiveDate").textContent;
+            document.getElementById("topLiveTime").textContent = document.getElementById("indiaLiveTime").textContent;
+
+            document.getElementById("countdownEyebrow").textContent = hasWeddingStarted
+                ? "The Celebration Has Begun"
+                : "The Big Day Is Almost Here";
+            document.getElementById("countdownHeading").textContent = hasWeddingStarted
+                ? "Time Since the Wedding"
+                : "Countdown to Forever";
+            timer.setAttribute("aria-label", hasWeddingStarted
+                ? "Time elapsed since the wedding"
+                : "Time remaining until the wedding");
+
+            const totalSeconds = Math.floor(Math.abs(remaining) / 1000);
+            document.getElementById("countdownDays").textContent = String(Math.floor(totalSeconds / 86400)).padStart(2, "0");
+            document.getElementById("countdownHours").textContent = String(Math.floor((totalSeconds % 86400) / 3600)).padStart(2, "0");
+            document.getElementById("countdownMinutes").textContent = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, "0");
+            document.getElementById("countdownSeconds").textContent = String(totalSeconds % 60).padStart(2, "0");
+        }
+
+        updateWeddingCountdown();
+        window.setInterval(updateWeddingCountdown, 1000);
+
+    </script>
+</body>
+</html>
